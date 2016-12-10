@@ -1,0 +1,6 @@
+got GreenPengiun2 useyourbrain
+Cell(ssid=GreenPengiun2)
+This scheme already exists
+finding scheme
+activating network
+closing script
