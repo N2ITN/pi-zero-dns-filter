@@ -32,25 +32,26 @@ TODO:
 
 
 # note - connect to running docker container
-docker exec -it [container-id] bash
+`docker exec -it [container-id] bash`
 
 
 
 # Install access point via create_ap
-```bash
+``bash
 sudo apt-get install util-linux procps hostapd iproute2 iw iwconfig haveged make dnsmasq iptables
 git clone https://github.com/oblique/create_ap
 cd create_ap
-make install```
+make install 
+``
 
 # to set up:
 sudo nano /etc/rc.local
 # add:
 cd /home/pirate/ && sudo create_ap -n wlan0 zer0 adzapper
 
-important: 
+important ( see https://github.com/oblique/create_ap/issues/78): 
 
-in `create_ap/create_ap`, change 
+### in `create_ap/create_ap`, change:
 ```
 if [[ $DAEMONIZE -eq 1 && $RUNNING_AS_DAEMON -eq 0 ]]; then
     echo "Running as Daemon..."
@@ -59,7 +60,7 @@ if [[ $DAEMONIZE -eq 1 && $RUNNING_AS_DAEMON -eq 0 ]]; then
     exit 0
 fi
 ```
-to
+### to
 ```
 if [[ $DAEMONIZE -eq 1 && $RUNNING_AS_DAEMON -eq 0 ]]; then
     echo "Running as Daemon..."
@@ -70,5 +71,5 @@ if [[ $DAEMONIZE -eq 1 && $RUNNING_AS_DAEMON -eq 0 ]]; then
     exit 0
 fi 
 ```
-https://github.com/oblique/create_ap/issues/78
+
 
