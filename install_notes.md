@@ -8,7 +8,9 @@
 
 
 
-## to see PID using 53: netstat -tupln
+## to see PID using 53: 
+`sudo netstat -plnt`
+
 `sudo pkill dnsmasq`
 
 # TODO
