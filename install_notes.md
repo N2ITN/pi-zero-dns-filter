@@ -1,6 +1,16 @@
 
 
+# TODO
 
+## replace offical pi-hole img with my clone:
+docker pull gojira00/pi-hole-2016
+
+## produce install script that clone from git
+change absolute paths in code to my repo
+
+## script replacement of `create_ap/create_ap` with modified file
+
+## try on pizero
 
 # portainer - monitor containers
 `docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock --name furiosa portainer/portainer:arm > error_catcher.s 2> /dev/null`
