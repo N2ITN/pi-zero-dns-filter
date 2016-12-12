@@ -73,3 +73,44 @@ wlan0     Link encap:Ethernet  HWaddr b8:27:eb:27:3d:60
 
 wlan0     Interface doesn't support scanning : Device or resource busy
 closing script
+********
+Mon Dec 12 01:54:44 2016
+original wlan0 state:
+wlan0     Link encap:Ethernet  HWaddr b8:27:eb:27:3d:60  
+          inet addr:192.168.12.1  Bcast:192.168.12.255  Mask:255.255.255.0
+          inet6 addr: fe80::ba27:ebff:fe27:3d60/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1498 errors:0 dropped:125 overruns:0 frame:0
+          TX packets:1004 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:126208 (123.2 KiB)  TX bytes:116289 (113.5 KiB)
+
+
+after wlan0 reset:
+wlan0     Link encap:Ethernet  HWaddr b8:27:eb:27:3d:60  
+          inet addr:192.168.12.1  Bcast:192.168.12.255  Mask:255.255.255.0
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:1503 errors:0 dropped:130 overruns:0 frame:0
+          TX packets:1004 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:126513 (123.5 KiB)  TX bytes:116289 (113.5 KiB)
+
+
+got GreenPengiun2 useyourbrain
+Cell(ssid=GreenPengiun2)
+This scheme already exists
+finding scheme
+activating network
+after attempting reconnect:
+wlan0     Link encap:Ethernet  HWaddr b8:27:eb:27:3d:60  
+          inet addr:192.168.12.1  Bcast:192.168.12.255  Mask:255.255.255.0
+          inet6 addr: fe80::ba27:ebff:fe27:3d60/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1723 errors:0 dropped:199 overruns:0 frame:0
+          TX packets:1105 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:190518 (186.0 KiB)  TX bytes:134014 (130.8 KiB)
+
+
+connected, starting adblock service
+closing script
