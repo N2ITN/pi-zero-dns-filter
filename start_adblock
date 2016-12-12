@@ -1,2 +1,2 @@
-sudo python switch_wifi.py
+sudo python switch_wifi.py 
 bash pihole.sh
