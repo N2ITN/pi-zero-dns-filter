@@ -3,7 +3,7 @@
 # TODO
 
 ## replace offical pi-hole img with my clone:
-docker pull gojira00/pi-hole-2016
+docker pull gojira00/pi-hole-2016:arm
 
 ## produce install script that clone from git
 change absolute paths in code to my repo

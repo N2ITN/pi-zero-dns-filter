@@ -2,7 +2,7 @@
 import os 
 import sys
 from time import sleep, ctime
-os.chdir('/home/pirate')
+os.chdir('/home/pirate/zer0')
 f = file('pyfi_log.txt','w')
 sys.stdout = f
 ctime()
