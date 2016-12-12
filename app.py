@@ -72,11 +72,10 @@ class myHandler(BaseHTTPRequestHandler):
             except Exception as e:
                 print e
                 exit()
-                # os.system("cd /home/pirate/docker-ap && sudo ./docker_ap start wlan0 ")
                 
             server.socket.close()
 def reconnect(network,passkey):
-    os.chdir('/home/pirate')
+    os.chdir('/home/pirate/zer0')
     os.system('mv startAP.sh startAP_old.sh')
     with open('startAP.sh','w') as out:
         out.write('sudo python switch_wifi.py')# && bash pihole.sh')

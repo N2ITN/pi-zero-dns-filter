@@ -46,7 +46,7 @@ make install```
 # to set up:
 sudo nano /etc/rc.local
 # add:
-cd /home/pirate/ && sudo create_ap -n wlan0 zer0 adzapper
+cd /home/pirate/zer0 && sudo create_ap -n wlan0 zer0 adzapper
 
 important: 
 
