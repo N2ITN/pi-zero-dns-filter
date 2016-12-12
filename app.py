@@ -89,7 +89,7 @@ def reconnect(network,passkey):
         out.write(' '.join([network, passkey]))
     f.close()
     server.socket.close()
-    os.system('sudo python switch_wifi.py')
+    os.system('sudo python connect_wifi.py')
 try:
     #Create a web server and define the handler to manage the
     #incoming request

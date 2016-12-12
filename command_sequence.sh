@@ -17,9 +17,8 @@ cd ~/create_ap
 sudo make install
 
 
-# Ensure startAP.sh is the right version for first boot
+
 cd ~/zer0
-cp start_webserver startAP.sh
 
 # pip wifi module
 sudo aptitude install python-pip -y
