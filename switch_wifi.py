@@ -26,7 +26,7 @@ try:
     except Exception as e:
         print e
         print 'starting webserver'
-        os.system('sudo ./start_webserver')
+        os.system('sudo python app.py')
     myfi = Cell.all('wlan0')
     cell = [w for w in myfi if w.ssid==network]
     print 'trying:', network
@@ -52,7 +52,7 @@ try:
             print 'something went wrong, rebooting web server'
             os.system('sudo ifconfig wlan0 down')
             os.system('sudo ifconfig wlan0 up')
-            os.system('sudo ./start_webserver')
+            os.system('sudo python app.py)
     except Exception as e:
         print e
 except Exception as e:
