@@ -52,7 +52,7 @@ try:
             print 'something went wrong, rebooting web server'
             os.system('sudo ifconfig wlan0 down')
             os.system('sudo ifconfig wlan0 up')
-            os.system('sudo python webserver.py)
+            os.system('sudo python webserver.py')
     except Exception as e:
         print e
 except Exception as e:
