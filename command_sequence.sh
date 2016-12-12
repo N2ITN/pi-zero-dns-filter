@@ -7,7 +7,7 @@ git clone https://github.com/N2ITN/create_ap.git
 
 
 # Update system
-sudo apt-get update
+sudo aptitude update
 sudo aptitude upgrade -y
 
 
@@ -21,6 +21,9 @@ sudo make install
 cd ~/zer0
 cp start_webserver startAP.sh
 
+# pip wifi module
+sudo aptitude install python-pip -y
+sudo pip install wifi
 
 # Add startup script command
 > rc.local
