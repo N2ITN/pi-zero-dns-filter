@@ -1,5 +1,7 @@
+
 # Get libraries
 docker pull gojira00/pi-hole-2016:arm
+cd ~
 git clone https://github.com/N2ITN/pi-zero-accesspoint-adblocker.git zer0
 git clone https://github.com/N2ITN/create_ap.git
 
