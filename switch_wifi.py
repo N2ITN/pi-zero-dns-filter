@@ -33,7 +33,7 @@ try:
 
         except Exception as e:
             print e
-            os.system('mv startAP_old.sh startAP.sh')
+            os.system('cp start_webserver startAP.sh')
             os.system('sudo ifconfig wlan0 down')
             os.system('sudo ifconfig wlan0 up')
             os.system('sudo bash startAP.sh')

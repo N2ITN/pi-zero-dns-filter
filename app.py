@@ -76,7 +76,7 @@ class myHandler(BaseHTTPRequestHandler):
             server.socket.close()
 def reconnect(network,passkey):
     os.chdir('/home/pirate/zer0')
-    os.system('mv startAP.sh startAP_old.sh')
+    os.system('cp start_adblock startAP.sh')
     with open('startAP.sh','w') as out:
         out.write('sudo python switch_wifi.py')# && bash pihole.sh')
     os.system('chmod +x startAP.sh')

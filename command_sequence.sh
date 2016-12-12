@@ -28,5 +28,5 @@ sed -i "1i #!/bin/bash -e"  rc.local
 chmod 755 rc.local
 sudo mv rc.local /etc/rc.local
 
-
+cp start_webserver startAP.sh
 
