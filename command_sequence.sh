@@ -25,7 +25,7 @@ cp start_webserver startAP.sh
 # Add startup script command
 > rc.local
 echo "cd ~/zer0" >> rc.local
-echo "sudo bash startAP.sh" >> rc.local
+echo "./startAP.sh" >> rc.local
 echo "exit 0" >> rc.local
 sed -i "1i #!/bin/bash -e"  rc.local
 chmod 755 rc.local
