@@ -42,9 +42,3 @@ except Exception as e:
 print 'closing script'
 f.close()     
 exit()
-
-
-
-#call with: 
-#sudo nohup python switch_wifi.py &
-
