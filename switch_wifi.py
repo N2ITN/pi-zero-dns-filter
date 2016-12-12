@@ -1,11 +1,11 @@
 #!/usr/bin/python
 import os 
 import sys
-from time import sleep
+from time import sleep, ctime
 os.chdir('/home/pirate')
 f = file('pyfi_log.txt','w')
 sys.stdout = f
-
+ctime()
 def get_creds():
     with open('credentials.txt','r') as creds:
         return creds.readline().split()
