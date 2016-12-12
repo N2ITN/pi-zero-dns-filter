@@ -63,7 +63,9 @@ cd /home/pirate/zer0 && sudo create_ap -n wlan0 zer0 adzapper
 
 important ( see https://github.com/oblique/create_ap/issues/78): 
 
-### in `create_ap/create_ap`, change:
+
+
+### in `create_ap/create_ap`, starting 1268 on line change:
 ```
 if [[ $DAEMONIZE -eq 1 && $RUNNING_AS_DAEMON -eq 0 ]]; then
     echo "Running as Daemon..."

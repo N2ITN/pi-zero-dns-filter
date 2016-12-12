@@ -1268,9 +1268,11 @@ fi
 if [[ $DAEMONIZE -eq 1 && $RUNNING_AS_DAEMON -eq 0 ]]; then
     echo "Running as Daemon..."
     # run a detached create_ap
-    RUNNING_AS_DAEMON=1 setsid "$0" "${ARGS[@]}" &
+    read SSID
+    read PASSPHRASE
+    echo -e "$SSID\n$PASSPHRASE" | RUNNING_AS_DAEMON=1 setsid "$0" "${ARGS[@]}" &
     exit 0
-fi
+fi 
 
 if [[ $FREQ_BAND != 2.4 && $FREQ_BAND != 5 ]]; then
     echo "ERROR: Invalid frequency band" >&2
