@@ -4,14 +4,12 @@ import os
 from os import curdir, sep
 import cgi
 
-<<<<<<< HEAD
+
 PORT_NUMBER = 8080
 os.chdir('/home/pirate/zer0')
 f = file('pyfi_log.txt','a')
 print "**********" 
-=======
-PORT_NUMBER = 80
->>>>>>> ae8d638c473df46bc11fd95b938c75d892484e5f
+
 
 sys.stdout = f
 #This class will handles any incoming request from
@@ -91,10 +89,7 @@ def reconnect(network,passkey):
 try:
     #Create a web server and define the handler to manage the
     #incoming request
-<<<<<<< HEAD
-=======
-    
->>>>>>> ae8d638c473df46bc11fd95b938c75d892484e5f
+
     server = HTTPServer(('127.0.0.1', PORT_NUMBER), myHandler)
     print 'Started httpserver on port ' , PORT_NUMBER
     #Wait forever for incoming htto requests
