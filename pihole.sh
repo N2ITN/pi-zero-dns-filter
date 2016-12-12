@@ -1,3 +1,4 @@
+sudo netstat -plnt
 sudo pkill dnsmasq
 docker rm pihole
 IMAGE='gojira00/pi-hole-2016:arm'

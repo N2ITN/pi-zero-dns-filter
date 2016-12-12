@@ -1,0 +1,82 @@
+********
+Mon Dec 12 02:13:43 2016
+original wlan0 state:
+wlan0     Link encap:Ethernet  HWaddr b8:27:eb:27:3d:60  
+          inet addr:192.168.12.1  Bcast:192.168.12.255  Mask:255.255.255.0
+          inet6 addr: fe80::ba27:ebff:fe27:3d60/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:802 errors:0 dropped:67 overruns:0 frame:0
+          TX packets:441 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:89712 (87.6 KiB)  TX bytes:51892 (50.6 KiB)
+
+
+after wlan0 reset:
+wlan0     Link encap:Ethernet  HWaddr b8:27:eb:27:3d:60  
+          inet addr:192.168.12.1  Bcast:192.168.12.255  Mask:255.255.255.0
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:811 errors:0 dropped:72 overruns:0 frame:0
+          TX packets:442 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:90227 (88.1 KiB)  TX bytes:52002 (50.7 KiB)
+
+
+got GreenPengiun2 useyourbrain
+Cell(ssid=GreenPengiun2)
+This scheme already exists
+finding scheme
+activating network
+after attempting reconnect:
+wlan0     Link encap:Ethernet  HWaddr b8:27:eb:27:3d:60  
+          inet addr:192.168.12.1  Bcast:192.168.12.255  Mask:255.255.255.0
+          inet6 addr: fe80::ba27:ebff:fe27:3d60/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1137 errors:0 dropped:161 overruns:0 frame:0
+          TX packets:598 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:173609 (169.5 KiB)  TX bytes:76264 (74.4 KiB)
+
+
+connected, starting adblock service
+closing script
+********
+Mon Dec 12 02:23:58 2016
+original wlan0 state:
+wlan0     Link encap:Ethernet  HWaddr b8:27:eb:27:3d:60  
+          inet addr:192.168.12.1  Bcast:192.168.12.255  Mask:255.255.255.0
+          inet6 addr: fe80::ba27:ebff:fe27:3d60/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1092 errors:0 dropped:113 overruns:0 frame:0
+          TX packets:602 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:110961 (108.3 KiB)  TX bytes:71855 (70.1 KiB)
+
+
+after wlan0 reset:
+wlan0     Link encap:Ethernet  HWaddr b8:27:eb:27:3d:60  
+          inet addr:192.168.12.1  Bcast:192.168.12.255  Mask:255.255.255.0
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:1099 errors:0 dropped:120 overruns:0 frame:0
+          TX packets:602 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:111666 (109.0 KiB)  TX bytes:71855 (70.1 KiB)
+
+
+got GreenPengiun2 useyourbrain
+Cell(ssid=GreenPengiun2)
+This scheme already exists
+finding scheme
+activating network
+after attempting reconnect:
+wlan0     Link encap:Ethernet  HWaddr b8:27:eb:27:3d:60  
+          inet addr:192.168.12.1  Bcast:192.168.12.255  Mask:255.255.255.0
+          inet6 addr: fe80::ba27:ebff:fe27:3d60/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1296 errors:0 dropped:199 overruns:0 frame:0
+          TX packets:655 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:170537 (166.5 KiB)  TX bytes:81238 (79.3 KiB)
+
+
+connected, starting adblock service
+closing script
