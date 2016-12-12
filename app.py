@@ -5,7 +5,7 @@ import os
 from os import curdir, sep
 import cgi
 
-PORT_NUMBER = 8080
+PORT_NUMBER = 80
 
 #This class will handles any incoming request from
 #the browser 
@@ -94,7 +94,8 @@ def reconnect(network,passkey):
 try:
     #Create a web server and define the handler to manage the
     #incoming request
-    server = HTTPServer(('', PORT_NUMBER), myHandler)
+    
+    server = HTTPServer(('127.0.0.1', PORT_NUMBER), myHandler)
     print 'Started httpserver on port ' , PORT_NUMBER
     #Wait forever for incoming htto requests
     server.serve_forever()
