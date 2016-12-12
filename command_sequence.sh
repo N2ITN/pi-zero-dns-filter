@@ -24,7 +24,7 @@ cp start_webserver startAP.sh
 # pip wifi module
 sudo aptitude install python-pip -y
 sudo pip install wifi
-
+sudo pip install pendulum
 # Add startup script command
 > rc.local
 echo "cd ~/zer0" >> rc.local

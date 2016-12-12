@@ -1,11 +1,12 @@
 #!/usr/bin/python
 import os 
 import sys
-from time import sleep, ctime
+import pendulum
 os.chdir('/home/pirate/zer0')
 f = file('pyfi_log.txt','w')
 sys.stdout = f
-print ctime()
+
+print pendulum.now('US/Pacific-New').ctime()
 def get_creds():
     with open('credentials.txt','r') as creds:
         return creds.readline().split()

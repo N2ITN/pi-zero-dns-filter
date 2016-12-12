@@ -1,5 +1,2 @@
-<<<<<<< HEAD
 sudo create_ap -n wlan0 zer0 adzapper & sudo python app.py
-=======
-cd  ~/create_ap/ && sudo bash create_ap  -n wlan0 zer0 adzapper & sudo python app.py
->>>>>>> 721f5f04235f55d15ab030b7df4b70f14715e23b
+
