@@ -1,8 +1,8 @@
-# Clone my copies of libraries
+# Get libraries
+docker pull gojira00/pi-hole-2016:arm
 git clone https://github.com/N2ITN/pi-zero-accesspoint-adblocker.git zer0
 git clone https://github.com/N2ITN/create_ap.git
-cd zer0
-docker pull gojira00/pi-hole-2016:arm
+
 
 # Update system
 sudo apt-get update
@@ -16,6 +16,7 @@ sudo make install
 
 
 # Ensure startAP.sh is the right version for first boot
+cd ~/zer0
 cp start_webserver startAP.sh
 
 
