@@ -4,6 +4,7 @@ import os
 from os import curdir, sep
 import cgi
 
+
 PORT_NUMBER = 8080
 os.chdir('/home/pirate/zer0')
 f = file('pyfi_log.txt','a')
