@@ -1,12 +1,19 @@
-
 #!/usr/bin/python
 from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
 import os
 from os import curdir, sep
 import cgi
 
+<<<<<<< HEAD
+PORT_NUMBER = 8080
+os.chdir('/home/pirate/zer0')
+f = file('pyfi_log.txt','a')
+print "**********" 
+=======
 PORT_NUMBER = 80
+>>>>>>> ae8d638c473df46bc11fd95b938c75d892484e5f
 
+sys.stdout = f
 #This class will handles any incoming request from
 #the browser 
 class myHandler(BaseHTTPRequestHandler):
@@ -71,30 +78,23 @@ class myHandler(BaseHTTPRequestHandler):
                 reconnect(self.network, self.passkey)
             except Exception as e:
                 print e
+                f.close()
                 exit()
                 
             server.socket.close()
 def reconnect(network,passkey):
-    os.chdir('/home/pirate/zer0')
-    os.system('cp start_adblock startAP.sh')
-    with open('startAP.sh','w') as out:
-        out.write('sudo python switch_wifi.py')# && bash pihole.sh')
-    os.system('chmod +x startAP.sh')
     with open('credentials.txt','w') as out:
         out.write(' '.join([network, passkey]))
-    os.system('sudo python switch_wifi.py')
+    os.system('cp start_adblock startAP.sh')
+    f.close()
     os.system('sudo reboot now')
-
-
-
-    
-
-
-
 try:
     #Create a web server and define the handler to manage the
     #incoming request
+<<<<<<< HEAD
+=======
     
+>>>>>>> ae8d638c473df46bc11fd95b938c75d892484e5f
     server = HTTPServer(('127.0.0.1', PORT_NUMBER), myHandler)
     print 'Started httpserver on port ' , PORT_NUMBER
     #Wait forever for incoming htto requests

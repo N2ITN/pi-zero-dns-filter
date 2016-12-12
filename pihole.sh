@@ -1,3 +1,5 @@
+sudo pkill dnsmasq
+docker rm pihole
 IMAGE='gojira00/pi-hole-2016:arm'
 NIC='wlan0'
 IP=$(ip addr show $NIC | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)

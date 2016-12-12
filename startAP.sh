@@ -1,1 +1,2 @@
-sudo create_ap -n wlan0 zer0 adzapper & sudo python app.py
+sudo python switch_wifi.py 
+bash pihole.sh
