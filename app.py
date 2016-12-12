@@ -3,14 +3,16 @@ from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
 import os
 from os import curdir, sep
 import cgi
-
-
+import sys
+import pendulum
+from subprocess import Popen
 PORT_NUMBER = 8080
 os.chdir('/home/pirate/zer0')
-f = file('pyfi_log.txt','a')
+f = file('web_log','a')
 print "**********" 
-
 sys.stdout = f
+Popen(['sudo', 'create_ap', '-n', 'wlan0', 'zer0' ,'adzapper'])
+print pendulum.now('US/Pacific-New').ctime()
 #This class will handles any incoming request from
 #the browser 
 class myHandler(BaseHTTPRequestHandler):
@@ -75,22 +77,23 @@ class myHandler(BaseHTTPRequestHandler):
                 print 'shutting down web server'
                 server.socket.close()
                 reconnect(self.network, self.passkey)
+                exit(0)
             except Exception as e:
                 print e
                 f.close()
-                exit()
+                server.socket.close()
                 
             server.socket.close()
 def reconnect(network,passkey):
     with open('credentials.txt','w') as out:
         out.write(' '.join([network, passkey]))
-    os.system('cp start_adblock startAP.sh')
     f.close()
-    os.system('sudo reboot now')
+    server.socket.close()
+    os.system('sudo python switch_wifi.py')
 try:
     #Create a web server and define the handler to manage the
     #incoming request
-    server = HTTPServer(('127.0.0.1', PORT_NUMBER), myHandler)
+    server = HTTPServer(('0.0.0.0', PORT_NUMBER), myHandler)
     print 'Started httpserver on port ' , PORT_NUMBER
     #Wait forever for incoming htto requests
     server.serve_forever()

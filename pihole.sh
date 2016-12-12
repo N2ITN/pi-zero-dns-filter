@@ -1,5 +1,5 @@
-sudo netstat -plnt
 sudo pkill dnsmasq
+sudo netstat -plnt
 docker rm pihole
 IMAGE='gojira00/pi-hole-2016:arm'
 NIC='wlan0'

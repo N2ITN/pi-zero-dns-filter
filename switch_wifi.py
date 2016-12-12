@@ -15,25 +15,31 @@ def get_creds():
 try:
     print 'original wlan0 state:'
     print subprocess.check_output('ifconfig wlan0', shell=True)
-    os.system('sudo pkill create_ap')
+    os.system('sudo pkill create_ap &&  sleep 5')
     os.system('sudo ifconfig wlan0 down')
     os.system('sudo ifconfig wlan0 up')
     print 'after wlan0 reset:'
     print subprocess.check_output('ifconfig wlan0', shell=True)
     from wifi import Cell, Scheme
-    network, passkey = get_creds()
+    try:
+        network, passkey = get_creds()
+    except Exception as e:
+        print e
+        print 'starting webserver'
+        os.system('sudo ./start_webserver')
     myfi = Cell.all('wlan0')
     cell = [w for w in myfi if w.ssid==network]
-    print 'got',network, passkey
+    print 'trying:', network
     try:
-        cell = cell[0]  
-        print cell
-        scheme = Scheme.for_cell('wlan0', 'myNetwork', cell, passkey)
+        if len(cell) > 0:
+            print 'found a match'
+        else: print 'no matching network found'
+        scheme = Scheme.for_cell('wlan0', 'myNetwork', cell[0], passkey)
         try:
             scheme.save()
         except Exception as e:
             print e
-            print 'finding scheme'
+            print 'matching scheme'
             scheme = Scheme.find('wlan0', 'myNetwork')
         try:
             print 'activating network'
@@ -41,20 +47,15 @@ try:
             time.sleep(7)            
             print 'after attempting reconnect:'
             print subprocess.check_output('ifconfig wlan0', shell=True)
-            print 'connected, starting adblock service'
-            os.system('cp start_adblock startAP.sh')
-            os.system('./pihole.sh')
         except Exception as e:
             print e
             print 'something went wrong, rebooting web server'
-            os.system('cp start_webserver startAP.sh')
             os.system('sudo ifconfig wlan0 down')
             os.system('sudo ifconfig wlan0 up')
-            os.system('./startAP.sh')
+            os.system('sudo ./start_webserver')
     except Exception as e:
         print e
 except Exception as e:
     print e
 print 'closing script'
 f.close()     
-exit()
