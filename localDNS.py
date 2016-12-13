@@ -1,8 +1,8 @@
 import socket
 
 def resolve(name):
-    if name == "adzapper.login":
-        return "192.168.12.1"
+    if name == "zero.ad/login":
+        return "127.0.0.1:8080"
     else :
         # you ought to add some basic checking of name here
         return socket.gethostbyname(name)
