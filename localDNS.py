@@ -1,7 +1,7 @@
 import socket
 
 def resolve(name):
-    if name == "zero.ad/login":
+    if name == "ad-zero.login":
         return "127.0.0.1:8080"
     else :
         # you ought to add some basic checking of name here
