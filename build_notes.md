@@ -10,12 +10,18 @@ change absolute paths in code to my repo
 
 ## script replacement of `create_ap/create_ap` with modified file
 
-## try on pizero
+## try on pi zero
 
 # portainer - monitor containers
 `docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock --name furiosa portainer/portainer:arm > error_catcher.s 2> /dev/null`
 `docker start furiosa`
 
+
+
+# to see free space: 
+`df -k .`
+Filesystem     1K-blocks    Used Available Use% Mounted on
+/dev/root       14182384 1350704  12206988  10% /
 
 # to see current SSID:
 ` iwconfig wlan0 | grep ESSID | awk -F: '{print $2}' `
