@@ -11,7 +11,7 @@ os.chdir('/home/pirate/zer0')
 f = file('web_log','a')
 print "**********" 
 sys.stdout = f
-Popen(['sudo', 'create_ap', '-n', 'wlan0', 'zer0' ,'adzapper'])
+# Popen(['sudo', 'create_ap', '-n', 'wlan0', 'zer0' ,'adzapper'])
 print pendulum.now('US/Pacific-New').ctime()
 #This class will handles any incoming request from
 #the browser 
