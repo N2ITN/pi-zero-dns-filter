@@ -1,1 +1,3 @@
-sudo create_ap -n wlan0 zer0 adzapper & sudo python localDNS.py & sudo python webserver.py 
+sudo create_ap -n wlan0 zer0 adzapper & sleep 30 && export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\n/' | grep 192`
+
+sudo python localDNS.py & sudo python webserver.py 
