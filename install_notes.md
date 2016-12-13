@@ -66,7 +66,7 @@ cd /home/pirate/zer0 && sudo create_ap -n wlan0 zer0 adzapper
 
 
 
-sudo echo "cd ~/zer0 && bash startAP.sh" >> /etc/rc.local
+sudo echo "cd ~/zer0 && bash startup.sh" >> /etc/rc.local
 
 
 important ( see https://github.com/oblique/create_ap/issues/78): 

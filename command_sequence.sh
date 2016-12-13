@@ -27,7 +27,7 @@ sudo pip install pendulum
 # Add startup script command
 > rc.local
 echo "cd ~/zer0" >> rc.local
-echo "sudo bash startAP.sh" >> rc.local
+echo "sudo bash startup.sh" >> rc.local
 echo "exit 0" >> rc.local
 sed -i "1i #!/bin/bash -e"  rc.local
 chmod 755 rc.local
