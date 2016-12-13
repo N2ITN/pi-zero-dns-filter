@@ -6,7 +6,7 @@ import cgi
 import sys
 import pendulum
 import subprocess
-PORT_NUMBER = 8080
+PORT_NUMBER = 80
 os.chdir('/home/pirate/zer0')
 f = file('web_log','a')
 print "**********" 
