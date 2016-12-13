@@ -5,13 +5,12 @@ from os import curdir, sep
 import cgi
 import sys
 import pendulum
-from subprocess import Popen
+import subprocess
 PORT_NUMBER = 8080
 os.chdir('/home/pirate/zer0')
 f = file('web_log','a')
 print "**********" 
 sys.stdout = f
-# Popen(['sudo', 'create_ap', '-n', 'wlan0', 'zer0' ,'adzapper'])
 print pendulum.now('US/Pacific-New').ctime()
 #This class will handles any incoming request from
 #the browser 
@@ -93,7 +92,8 @@ def reconnect(network,passkey):
 try:
     #Create a web server and define the handler to manage the
     #incoming request
-    server = HTTPServer(('0.0.0.0', PORT_NUMBER), myHandler)
+    host = subprocess.check_output(" ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192",shell=True).split('\n')[0]
+    server = HTTPServer((host, PORT_NUMBER), myHandler)
     print 'Started httpserver on port ' , PORT_NUMBER
     #Wait forever for incoming htto requests
     server.serve_forever()

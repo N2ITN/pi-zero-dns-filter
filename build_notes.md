@@ -16,6 +16,8 @@ change absolute paths in code to my repo
 `docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock --name furiosa portainer/portainer:arm > error_catcher.s 2> /dev/null`
 `docker start furiosa`
 
+# get current IP
+ ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\n/g' | grep 192
 
 
 # to see free space: 

@@ -1,8 +1,11 @@
 import socket
+import subprocess
 
 def resolve(name):
     if name == "ad-zero.login":
-        return "127.0.0.1:8080"
+        print 'DNS query incoming'
+        return subprocess.check_output(" ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192",shell=True).split('\n')[0]+':8080'
+        
     else :
         # you ought to add some basic checking of name here
         return socket.gethostbyname(name)
