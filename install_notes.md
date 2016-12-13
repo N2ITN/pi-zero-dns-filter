@@ -17,6 +17,9 @@ change absolute paths in code to my repo
 `docker start furiosa`
 
 
+# to see current SSID:
+` iwconfig wlan0 | grep ESSID | awk -F: '{print $2}' `
+
 
 ## to see PID using 53: 
 `sudo netstat -plnt`
