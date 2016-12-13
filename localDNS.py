@@ -1,8 +1,10 @@
 import socket
 import subprocess
 
+local_url = "ad-zero.login"
+print local_url 
 def resolve(name):
-    if name == "ad-zero.login":
+    if name == local_url:
         print 'DNS query incoming'
         return subprocess.check_output(" ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192",shell=True).split('\n')[0]+':8080'
         
