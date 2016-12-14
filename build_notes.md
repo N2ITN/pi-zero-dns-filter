@@ -38,6 +38,29 @@ Filesystem     1K-blocks    Used Available Use% Mounted on
 # sync with weaved with ssh 
 `sudo apt-get install weavedconnectd`
 
+https://www.reddit.com/r/pihole/comments/441k6q/changing_the_blank_image_that_takes_the_place_of/
+
+
+DNS SETUP:
+    /etc/resolve.conf:
+    192.168.12.1 ad-zero.net
+        note (try 
+        export WLAN_ADDR=ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\n/' | grep 192
+        )
+
+export WLAN_ADDR=ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\n/' | grep 192
+touch resolv.conf && echo "$WLAN_ADDR ad-zero.io" >> resolv.conf && chmod 644 resolv.conf
+
+
+
+    cd ~/fakedns
+    sudo python3 fakedns.py 192.168.1.12   
+#### ADD TO COMMANDS     
+
+
+
+
+
 
 
 steps:
