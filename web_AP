@@ -1,0 +1,8 @@
+sudo create_ap -n wlan0 zer0 adzapper & 
+( sleep 10 &)
+export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\n/' | grep 192`;
+touch ~/zer0/resolv.conf && echo "$WLAN_ADDR www.ad-zero.net" >> ~/zer0/resolv.conf && chmod 644 ~/zer0/resolv.conf
+sudo mv resolv.conf /etc/resolv.conf
+cd ~/zer0 && sudo python webserver.py &
+cd ~/fakedns && sudo python3 fakedns.py $WLAN_ADDR &
+
