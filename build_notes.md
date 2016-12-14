@@ -17,7 +17,7 @@ change absolute paths in code to my repo
 `docker start furiosa`
 
 # get current IP
- ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\n/g' | grep 192
+ ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\n/' | grep 192
 
 
 # to see free space: 
