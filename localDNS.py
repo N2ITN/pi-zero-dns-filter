@@ -6,7 +6,7 @@ print local_url
 def resolve(name):
     if name == local_url:
         print 'DNS query incoming'
-        return '192.168.12.1:8080' 
+        return '192.168.12.1:80' 
         #        subprocess.check_output(" ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192",shell=True).split('\n')[0]+':8080'
         
     else :
