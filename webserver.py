@@ -93,8 +93,9 @@ try:
     #Create a web server and define the handler to manage the
     #incoming request
     host = subprocess.check_output(" ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192",shell=True).split('\n')[0]
+    #host = '192.168.12.1'
     server = HTTPServer((host, PORT_NUMBER), myHandler)
-    print 'Started httpserver on port ' , PORT_NUMBER
+    print 'Started httpserver on port ' ,host, PORT_NUMBER
     #Wait forever for incoming htto requests
     server.serve_forever()
 

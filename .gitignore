@@ -1,3 +1,4 @@
-wifi_log
+*log*
 credentials.txt
-pyfi_log.txt
+nohup.out
+
