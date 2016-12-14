@@ -81,14 +81,16 @@ class myHandler(BaseHTTPRequestHandler):
                 print e
                 f.close()
                 server.socket.close()
+                exit(1)
                 
             server.socket.close()
 def reconnect(network,passkey):
     with open('credentials.txt','w') as out:
         out.write(' '.join([network, passkey]))
     f.close()
-    server.socket.close()
-    os.system('sudo python connect_wifi.py')
+    
+    
+    #os.system('sudo python connect_wifi.py')
 try:
     #Create a web server and define the handler to manage the
     #incoming request
