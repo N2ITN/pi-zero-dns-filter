@@ -13,9 +13,11 @@ def run_serial(commandList):
     else: 
         command = "; ".join(commandList)
     print (command)
+
     process = subprocess.Popen(command, stdout=subprocess.PIPE,shell=True)
-    # proc_stdout = process.communicate()[0].strip()
-    # print (proc_stdout)
+    proc_stdout = process.communicate()[0].strip()
+    print (proc_stdout)
+    print ()
 
 wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper"]
 envConf = ["sudo pkill dnsmasq", "export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\n/' | grep 192`",
@@ -33,11 +35,13 @@ try:
     ap = run_serial(wireless_AP)
     sleep(7)
     env = run_serial(envConf)
+    
     fdns = run_serial(fakeDNS)
     ws = run_serial(webServer)
 
-    while ws.poll():
+    while ws.returncode ==None:
         pass
+    print ('terminating processes')    
     ap.terminate()
     fdns.terminate()    
     run_serial(restoreConf)
