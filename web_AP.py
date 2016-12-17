@@ -1,13 +1,13 @@
 import subprocess 
 from time import sleep
-subprocess.Popen("sudo create_ap -n wlan0 zer0 adzapper", shell=True)
+
 
 def run_parallel(commands):
 # run in parallel
     processes = [subprocess.Popen(cmd, shell=True) for cmd in commands]
 
 def run_serial(commandList):
-    ";".join(commandList)
+    command = ";".join(commandList)
     process = subprocess.Popen(command,stdout=subprocess.PIPE, shell=True)
     proc_stdout = process.communicate()[0].strip()
     print (proc_stdout)
