@@ -11,7 +11,7 @@ def run_serial(commandList):
         command = commandList[0]
     else: 
         command = "; ".join(commandList)
-    print command
+    print (command)
     process = subprocess.Popen(command)
     #,stdout=subprocess.PIPE, shell=True)
     # proc_stdout = process.communicate()[0].strip()
@@ -47,7 +47,7 @@ except KeyboardInterrupt:
             try:
                 x.terminate()
             except Exception as e:
-                print e
+                print (e)
     except: 
         exit()
     
