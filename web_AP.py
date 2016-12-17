@@ -24,17 +24,28 @@ fakeDNS = ["cd ~/fakedns && sudo python3 fakedns.py $WLAN_ADDR"]
 webServer = ['cd ~/zer0 && sudo python webserver.py']
 restoreConf = ['sudo echo -n "" > /etc/dnsmasq.host', 'sudo echo -n "" > /etc/resolv.conf']
 
-ap = run_serial(wireless_AP)
-sleep(7)
-env = run_serial(envConf)
-fdns = run_serial(fakeDNS)
-
-ws = run_serial(webServer)
 
 
-while ws.poll:
-    pass
-ap.terminate()
-fdns.terminate()    
-run_serial(restoreConf)
 
+try:
+    ap = run_serial(wireless_AP)
+    sleep(7)
+    env = run_serial(envConf)
+    fdns = run_serial(fakeDNS)
+    ws = run_serial(webServer)
+
+    while ws.poll:
+        pass
+    ap.terminate()
+    fdns.terminate()    
+    run_serial(restoreConf)
+except KeyboardInterrupt:
+    try:
+        for x in [ap, fdns, ws]:
+            try:
+                x.terminate()
+            except Exception as e:
+                print e
+    except: 
+        exit()
+    
