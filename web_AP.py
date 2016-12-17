@@ -36,22 +36,23 @@ try:
     env = run_serial(envConf)    
     fdns = run_serial(fakeDNS)
     ws = run_serial(webServer)
+    print (ws), print (type(ws))
 
-    while ws.returncode ==None:
-        pass
+
+def terminus():
     print ('terminating processes')    
-    ap.terminate()
-    fdns.terminate()    
+    for x in [ap, fnds,ws]:
+        try:
+            x.terminate()
+        except Exception as e:
+            print (e)
+
+
     run_serial(restoreConf)
     run_serial(envReset)
+    
+
 except KeyboardInterrupt:
     print ("KeyboardInterrupt")
-    try:
-        for x in [ap, fdns, ws]:
-            try:
-                x.terminate()
-            except Exception as e:
-                print (e)
-    except: 
-        exit()
+    terminus()
     
