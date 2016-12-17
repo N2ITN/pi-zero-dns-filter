@@ -5,7 +5,11 @@ from time import sleep
 
 
 try:
-
+    ap = run_serial(wireless_AP)
+    sleep(7)
+    env = run_serial(envConf)    
+    fdns = run_serial(fakeDNS)
+    ws = run_serial(webServer)
 
     def run_serial(commandList):
         if len(commandList) == 1:
