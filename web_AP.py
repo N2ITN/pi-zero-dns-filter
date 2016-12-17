@@ -15,8 +15,8 @@ def run_serial(commandList):
     print (command)
 
     process = subprocess.Popen(command, stdout=subprocess.PIPE,shell=True)
-    proc_stdout = process.communicate()[0].strip()
-    print (proc_stdout)
+    #proc_stdout = process.communicate()[0].strip()
+    #print (proc_stdout)
     print ()
 
 wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper"]
