@@ -25,17 +25,14 @@ envConf = ["sudo pkill dnsmasq", "export WLAN_ADDR=`ifconfig wlan0 | grep 'inet 
 'sudo mv resolv.conf /etc/resolv.conf', 'touch ~/zer0/dnsmasq.hosts && echo "$WLAN_ADDR ad-zero.io" >> ~/zer0/dnsmasq.hosts && chmod 644 ~/zer0/dnsmasq.hosts',
 'sudo mv dnsmasq.hosts /etc/dnsmasq.hosts']
 fakeDNS = ["cd ~/fakedns && sudo python3 fakedns.py $WLAN_ADDR"]
-webServer = ['cd ~/zer0 && sudo python webserver.py']
+webServer = ['sudo python webserver.py']
 restoreConf = ['sudo echo -n "" > /etc/dnsmasq.host', 'sudo echo -n "" > /etc/resolv.conf']
-
-
 
 
 try:
     ap = run_serial(wireless_AP)
     sleep(7)
-    env = run_serial(envConf)
-    
+    env = run_serial(envConf)    
     fdns = run_serial(fakeDNS)
     ws = run_serial(webServer)
 
