@@ -1,11 +1,6 @@
 import subprocess 
 from time import sleep
 
-
-# def run_parallel(commands):
-# run in parallel
-    # processes = [subprocess.Popen(cmd, shell=True) for cmd in commands]
-
 def run_serial(commandList):
     if len(commandList) == 1:
         command = commandList[0]
@@ -13,11 +8,18 @@ def run_serial(commandList):
     else: 
         command = "; ".join(commandList)
     print (command)
-
     process = subprocess.Popen(command,shell=True)
-    #proc_stdout = process.communicate()[0].strip()
-    #print (proc_stdout)
     print ()
+
+def terminus():
+    print ('terminating processes')    
+    for x in [ap, fnds,ws]:
+        try:
+            x.terminate()
+        except Exception as e:
+            print (e)
+    run_serial(restoreConf)
+    run_serial(envReset)
 
 wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper"]
 envConf = ["sudo pkill dnsmasq", "export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\n/' | grep 192`",
@@ -35,25 +37,15 @@ try:
     sleep(7)
     env = run_serial(envConf)    
     fdns = run_serial(fakeDNS)
+    ws = run_serial(webServer)
 except KeyboardInterrupt:
     print ("KeyboardInterrupt")
     terminus()
-    ws = run_serial(webServer)
     print (ws), print (type(ws))
 
 
 
-def terminus():
-    print ('terminating processes')    
-    for x in [ap, fnds,ws]:
-        try:
-            x.terminate()
-        except Exception as e:
-            print (e)
 
-
-    run_serial(restoreConf)
-    run_serial(envReset)
     
 
     
