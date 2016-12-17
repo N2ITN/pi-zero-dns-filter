@@ -35,7 +35,7 @@ try:
     'sudo mv resolv.conf /etc/resolv.conf', 'touch ~/zer0/dnsmasq.hosts && echo "$WLAN_ADDR ad-zero.io" >> ~/zer0/dnsmasq.hosts && chmod 644 ~/zer0/dnsmasq.hosts',
     'sudo mv dnsmasq.hosts /etc/dnsmasq.hosts']
     fakeDNS = ["cd ~/fakedns && sudo python3 fakedns.py $WLAN_ADDR"]
-    webServer = ["sudo pkill dnsmasq",'sudo netstat -plnt','sudo python webserver.py']
+    webServer = ["sudo pkill dnsmasq",'sudo netstat -plnt','python webserver.py']
     restoreConf = ['sudo echo -n "" > /etc/dnsmasq.host', 'sudo echo -n "" > /etc/resolv.conf']
     envReset = ['touch ~/zer0/resolv.conf && chmod 644 ~/zer0/resolv.conf', 'sudo mv resolv.conf /etc/resolv.conf', 
     'touch ~/zer0/dnsmasq.hosts && chmod 644 ~/zer0/dnsmasq.hosts','sudo mv dnsmasq.hosts /etc/dnsmasq.hosts']
