@@ -13,7 +13,7 @@ def run_serial(commandList):
         command = "; ".join(commandList)
     print (command)
     try:
-        subprocess.Popen(shlex.split(command),shell=False)
+        subprocess.Popen(command,shell=False)
     except Exception as e:
         print (e)
     print ()
