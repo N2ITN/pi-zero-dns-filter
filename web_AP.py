@@ -1,6 +1,6 @@
 import subprocess 
 from time import sleep
-
+import shlex
 
 
 
@@ -13,7 +13,7 @@ def run_serial(commandList):
         command = "; ".join(commandList)
     print (command)
     try:
-        subprocess.Popen(command,shell=True)
+        subprocess.Popen(shlex.split(command),shell=False)
     except Exception as e:
         print (e)
     print ()
