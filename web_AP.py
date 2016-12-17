@@ -5,11 +5,6 @@ from time import sleep
 
 
 try:
-    ap = run_serial(wireless_AP)
-    sleep(7)
-    env = run_serial(envConf)    
-    fdns = run_serial(fakeDNS)
-    ws = run_serial(webServer)
 
     def run_serial(commandList):
         if len(commandList) == 1:
@@ -44,7 +39,11 @@ try:
     restoreConf = ['sudo echo -n "" > /etc/dnsmasq.host', 'sudo echo -n "" > /etc/resolv.conf']
     envReset = ['touch ~/zer0/resolv.conf && chmod 644 ~/zer0/resolv.conf', 'sudo mv resolv.conf /etc/resolv.conf', 
     'touch ~/zer0/dnsmasq.hosts && chmod 644 ~/zer0/dnsmasq.hosts','sudo mv dnsmasq.hosts /etc/dnsmasq.hosts']
-
+    ap = run_serial(wireless_AP)
+    sleep(7)
+    env = run_serial(envConf)    
+    fdns = run_serial(fakeDNS)
+    ws = run_serial(webServer)
 
 except KeyboardInterrupt:
     print ("KeyboardInterrupt")
