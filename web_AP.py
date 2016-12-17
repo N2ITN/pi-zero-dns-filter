@@ -37,6 +37,9 @@ try:
     fdns = run_serial(fakeDNS)
     ws = run_serial(webServer)
     print (ws), print (type(ws))
+except exception as e:
+    print(e)
+
 
 
 def terminus():
