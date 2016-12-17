@@ -7,8 +7,9 @@ from time import sleep
     # processes = [subprocess.Popen(cmd, shell=True) for cmd in commands]
 
 def run_serial(commandList):
-    if len(commandList) == 1: commandList.append(" ")
-    command = "; ".join(commandList)
+    if len(commandList) == 1:
+        comand = commandList[0]
+    else: command = "; ".join(commandList)
     print command
     process = subprocess.Popen(command)
     #,stdout=subprocess.PIPE, shell=True)
