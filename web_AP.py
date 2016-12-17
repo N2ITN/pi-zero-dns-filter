@@ -8,7 +8,10 @@ def run_serial(commandList):
     else: 
         command = "; ".join(commandList)
     print (command)
-    process = subprocess.Popen(command,shell=True)
+    try:
+        subprocess.Popen(command,shell=True)
+    except Exception as e:
+        print e
     print ()
 
 def terminus():
