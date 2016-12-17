@@ -9,6 +9,7 @@ from time import sleep
 def run_serial(commandList):
     if len(commandList) == 1: commandList.append(" ")
     command = "; ".join(commandList)
+    print command
     process = subprocess.Popen(command)#,stdout=subprocess.PIPE, shell=True)
     # proc_stdout = process.communicate()[0].strip()
     # print (proc_stdout)
