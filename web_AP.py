@@ -24,8 +24,8 @@ def terminus():
     run_serial(restoreConf)
     run_serial(envReset)
 
-wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper"]
-envConf = ["sudo pkill dnsmasq", "export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\n/' | grep 192`",
+wireless_AP = ["sudo pkill dnsmasq","sudo create_ap -n wlan0 zer0 adzapper" ]
+envConf = ["export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\n/' | grep 192`",
 'touch ~/zer0/resolv.conf && echo "nameserver $WLAN_ADDR" >> ~/zer0/resolv.conf && chmod 644 ~/zer0/resolv.conf',
 'sudo mv resolv.conf /etc/resolv.conf', 'touch ~/zer0/dnsmasq.hosts && echo "$WLAN_ADDR ad-zero.io" >> ~/zer0/dnsmasq.hosts && chmod 644 ~/zer0/dnsmasq.hosts',
 'sudo mv dnsmasq.hosts /etc/dnsmasq.hosts']
