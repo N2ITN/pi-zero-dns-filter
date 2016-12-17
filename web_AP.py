@@ -9,9 +9,9 @@ from time import sleep
 def run_serial(commandList):
     if len(commandList) == 1: commandList.append(" ")
     command = "; ".join(commandList)
-    process = subprocess.Popen(command,stdout=subprocess.PIPE, shell=True)
-    proc_stdout = process.communicate()[0].strip()
-    print (proc_stdout)
+    process = subprocess.Popen(command)#,stdout=subprocess.PIPE, shell=True)
+    # proc_stdout = process.communicate()[0].strip()
+    # print (proc_stdout)
 
 wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper"]
 envConf = ["export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\n/' | grep 192`;",
