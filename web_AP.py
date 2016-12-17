@@ -3,8 +3,6 @@ from time import sleep
 import shlex
 
 
-
-
 def run_serial(commandList):
     if len(commandList) == 1:
         command = commandList[0]
@@ -43,8 +41,8 @@ try:
     ap = run_serial(wireless_AP)
     sleep(7)
     env = run_serial(envConf)    
-    fdns = run_serial(fakeDNS)
     ws = run_serial(webServer)
+    fdns = run_serial(fakeDNS)
 
 except Exception as e:
     if isinstance(e, KeyboardInterrupt):
