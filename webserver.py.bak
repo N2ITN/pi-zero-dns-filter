@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from http.server import BaseHTTPRequestHandler,HTTPServer
+from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
 import os
 from os import curdir, sep
 import cgi
@@ -9,9 +9,9 @@ import subprocess
 PORT_NUMBER = 80
 os.chdir('/home/pirate/zer0')
 f = file('web_log','a')
-print("**********") 
+print "**********" 
 sys.stdout = f
-print(pendulum.now('US/Pacific-New').ctime())
+print pendulum.now('US/Pacific-New').ctime()
 #This class will handles any incoming request from
 #the browser 
 class myHandler(BaseHTTPRequestHandler):
@@ -65,20 +65,20 @@ class myHandler(BaseHTTPRequestHandler):
                          'CONTENT_TYPE':self.headers['Content-Type'],
             })
 
-            print("Connecting to: %s" % form["network"].value)
-            print("Password: %s" % form["password"].value)
+            print "Connecting to: %s" % form["network"].value
+            print "Password: %s" % form["password"].value
             self.send_response(200)
             self.end_headers()
             self.wfile.write("Connecting to: %s" % form["network"].value)
             self.network = form["network"].value
             self.passkey = form["password"].value
             try: 
-                print('shutting down web server')
+                print 'shutting down web server'
                 server.socket.close()
                 reconnect(self.network, self.passkey)
                 exit(0)
             except Exception as e:
-                print(e)
+                print e
                 f.close()
                 server.socket.close()
                 exit(1)
@@ -101,11 +101,11 @@ try:
     #print os.environ.keys()
     #host = os.environ['WLAN_ADDR']
     server = HTTPServer((host, PORT_NUMBER), myHandler)
-    print('Started httpserver on port ' ,host, PORT_NUMBER)
+    print 'Started httpserver on port ' ,host, PORT_NUMBER
     #Wait forever for incoming htto requests
     server.serve_forever()
 
 except KeyboardInterrupt:
-    print('^C received, shutting down the web server')
+    print '^C received, shutting down the web server'
     server.socket.close()
     
