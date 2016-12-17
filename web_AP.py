@@ -35,10 +35,11 @@ try:
     sleep(7)
     env = run_serial(envConf)    
     fdns = run_serial(fakeDNS)
+except KeyboardInterrupt:
+    print ("KeyboardInterrupt")
+    terminus()
     ws = run_serial(webServer)
     print (ws), print (type(ws))
-except exception as e:
-    print(e)
 
 
 
@@ -55,7 +56,4 @@ def terminus():
     run_serial(envReset)
     
 
-except KeyboardInterrupt:
-    print ("KeyboardInterrupt")
-    terminus()
     
