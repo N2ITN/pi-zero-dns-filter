@@ -9,6 +9,7 @@ from time import sleep
 def run_serial(commandList):
     if len(commandList) == 1:
         command = commandList[0]
+        print (command)
     else: 
         command = "; ".join(commandList)
     print (command)
@@ -35,12 +36,13 @@ try:
     fdns = run_serial(fakeDNS)
     ws = run_serial(webServer)
 
-    while ws.poll:
+    while ws.poll():
         pass
     ap.terminate()
     fdns.terminate()    
     run_serial(restoreConf)
 except KeyboardInterrupt:
+    print ("KeyboardInterrupt")
     try:
         for x in [ap, fdns, ws]:
             try:
