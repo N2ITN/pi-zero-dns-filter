@@ -21,7 +21,7 @@ try:
         try:
             subprocess.Popen(command,shell=True)
         except Exception as e:
-            print e
+            print (e)
         print ()
 
     def terminus():
