@@ -12,7 +12,7 @@ def run_serial(commandList):
     else: 
         command = "; ".join(commandList)
     print (command)
-    process = subprocess.Popen(command,stdout=subprocess.PIPE, shell=True)
+    process = subprocess.Popen(command, shell=True) #stdout=subprocess.PIPE,
     # proc_stdout = process.communicate()[0].strip()
     # print (proc_stdout)
 
