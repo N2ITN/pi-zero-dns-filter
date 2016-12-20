@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 from http.server import BaseHTTPRequestHandler,HTTPServer
 import os
 from os import curdir, sep
