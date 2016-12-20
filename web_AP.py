@@ -26,7 +26,7 @@ def terminus(x):
     run_serial(restoreConf)
     run_serial(envReset)
 
-stop = [terminus(i) for i in [ap, fnds,ws]]
+
 try:
     wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper" ]
     wlan0 = ["export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192`"]
@@ -43,12 +43,13 @@ try:
     envReset = ['touch ~/zer0/resolv.conf && chmod 644 ~/zer0/resolv.conf', 'sudo mv resolv.conf /etc/resolv.conf', 
     'touch ~/zer0/dnsmasq.hosts && chmod 644 ~/zer0/dnsmasq.hosts','sudo mv dnsmasq.hosts /etc/dnsmasq.hosts']
     '''
-    fdns = run_serial(fakeDNS)
-    ap = run_serial(wireless_AP)
+    actionItems = [run_serial(fakeDNS), run_serial(wireless_AP), run_serial(wlan0), run_serial(webServer)]
+    # fdns = 
+    # ap = 
     sleep(7)
-    ''' env = run_serial(envConf) '''
-    wl = run_serial(wlan0)    
-    ws = run_serial(webServer)
+    # ''' env = run_serial(envConf) '''
+    # wl = 
+    # ws = 
 
 except Exception as e:
     if isinstance(e, KeyboardInterrupt):
