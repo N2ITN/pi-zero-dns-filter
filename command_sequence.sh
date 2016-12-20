@@ -16,8 +16,6 @@ sudo apt-get install util-linux procps hostapd iproute2 iw haveged make dnsmasq 
 cd ~/create_ap
 sudo make install
 
-
-
 cd ~/zer0
 
 # pip wifi module
