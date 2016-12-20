@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 from http.server import BaseHTTPRequestHandler,HTTPServer
 import os
 from os import curdir, sep
@@ -8,7 +8,7 @@ import pendulum
 import subprocess
 PORT_NUMBER = 80
 os.chdir('/home/pirate/zer0')
-f = file('web_log','a')
+f = open('web_log','a')
 print("**********") 
 sys.stdout = f
 print(pendulum.now('US/Pacific-New').ctime())
