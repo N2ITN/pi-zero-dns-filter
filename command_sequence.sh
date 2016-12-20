@@ -21,9 +21,10 @@ sudo make install
 cd ~/zer0
 
 # pip wifi module
-sudo aptitude install python-pip -y
-sudo pip install wifi
-sudo pip install pendulum
+sudo aptitude install python3 -y
+sudo aptitude install python3-pip -y
+sudo pip3 install wifi
+sudo pip3 install pendulum
 # Add startup script command
 > rc.local
 echo "cd ~/zer0" >> rc.local
@@ -35,7 +36,6 @@ chmod 755 rc.local
 sudo mv rc.local /etc/rc.local
 
 
-sudo aptitude install python3 -y
 cd ~ && git clone https://github.com/pathes/fakedns.git
 
 
