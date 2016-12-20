@@ -31,7 +31,7 @@ try:
     wlan0 = ["export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192`",
     "sudo pkill dnsmasq"]
     webServer = ['sudo netstat -plnt','sudo python3 webserver.py']
-    fakeDNS = ["cd ~/fakedns && python3 fakedns.py $WLAN_ADDR"]
+    fakeDNS = ["su -c cd ~/fakedns && python3 fakedns.py $WLAN_ADDR"]
 
 
     ## need to understand this part better, its the reason everything is fucked up
