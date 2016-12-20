@@ -48,17 +48,17 @@ try:
     ''' env = run_serial(envConf) '''
     wl = run_serial(wlan0)    
     ws = run_serial(webServer)
-    [terminus(i) for i in [ap, fnds,ws]]
+    stop = [terminus(i) for i in [ap, fnds,ws]]
 
 except Exception as e:
     if isinstance(e, KeyboardInterrupt):
         print ("KeyboardInterrupt")
-        terminus()
+        stop()
         print (ws), print (type(ws))
     else: 
         "Error"
         print (e)
-        terminus()
+        stop()
 
 
 
