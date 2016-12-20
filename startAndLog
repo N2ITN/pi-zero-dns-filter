@@ -1,0 +1,1 @@
+python3 web_AP.py >log.log 2>&1
