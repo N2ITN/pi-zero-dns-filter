@@ -28,8 +28,8 @@ def terminus():
 
 try:
     wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper" ]
-    fakeDNS = ["sudo pkill dnsmasq", "cd ~/fakedns && python3 fakedns.py $WLAN_ADDR"]
     wlan0 = ["export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192`"]
+    fakeDNS = ["sudo pkill dnsmasq", "cd ~/fakedns && python3 fakedns.py $WLAN_ADDR"]
 
 
     ## need to understand this part better, its the reason everything is fucked up
@@ -50,8 +50,8 @@ try:
     sleep(7)
     ''' env = run_serial(envConf) '''
     wl = run_serial(wlan0)    
-    ws = run_serial(webServer)
     fdns = run_serial(fakeDNS)
+    ws = run_serial(webServer)
 
 except Exception as e:
     if isinstance(e, KeyboardInterrupt):
