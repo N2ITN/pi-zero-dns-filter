@@ -8,7 +8,7 @@ import pendulum
 import subprocess
 PORT_NUMBER = 80
 os.chdir('/home/pirate/zer0')
-f = open('web_log','a')
+z = open('web_log','a')
 print("**********") 
 sys.stdout = f
 print(pendulum.now('US/Pacific-New').ctime())
