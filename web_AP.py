@@ -31,20 +31,23 @@ try:
     fakeDNS = ["sudo pkill dnsmasq && cd ~/fakedns && sudo python3 fakedns.py $WLAN_ADDR"]
 
     ## need to understand this part better, its the reason everything is fucked up
+    '''
     envConf = ["export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192`",
     'touch ~/zer0/resolv.conf && echo "nameserver $WLAN_ADDR" >> ~/zer0/resolv.conf && chmod 644 ~/zer0/resolv.conf',
     'sudo mv resolv.conf /etc/resolv.conf', 'touch ~/zer0/dnsmasq.hosts && echo "$WLAN_ADDR ad-zero.io" >> ~/zer0/dnsmasq.hosts && chmod 644 ~/zer0/dnsmasq.hosts',
     'sudo mv dnsmasq.hosts /etc/dnsmasq.hosts']
+    '''
 
     webServer = ['sudo netstat -plnt','sudo python3 webserver.py']
     
     ## part of the above confusion
+    '''
     envReset = ['touch ~/zer0/resolv.conf && chmod 644 ~/zer0/resolv.conf', 'sudo mv resolv.conf /etc/resolv.conf', 
     'touch ~/zer0/dnsmasq.hosts && chmod 644 ~/zer0/dnsmasq.hosts','sudo mv dnsmasq.hosts /etc/dnsmasq.hosts']
-
+    '''
     ap = run_serial(wireless_AP)
     sleep(7)
-    env = run_serial(envConf)    
+    ''' env = run_serial(envConf) '''    
     ws = run_serial(webServer)
     fdns = run_serial(fakeDNS)
 
