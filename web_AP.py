@@ -25,8 +25,8 @@ def terminus(x):
         print (e)
     run_serial(restoreConf)
     run_serial(envReset)
-    stop = [terminus(i) for i in [ap, fnds,ws]]
 
+stop = [terminus(i) for i in [ap, fnds,ws]]
 try:
     wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper" ]
     wlan0 = ["export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192`"]
