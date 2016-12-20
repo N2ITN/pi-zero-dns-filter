@@ -28,7 +28,7 @@ def terminus():
 
 try:
     wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper" ]
-    fakeDNS = ["sudo pkill dnsmasq && cd ~/fakedns && sudo python3 fakedns.py $WLAN_ADDR"]
+    fakeDNS = ["sudo pkill dnsmasq && cd ~/fakedns && python3 fakedns.py $WLAN_ADDR"]
 
     ## need to understand this part better, its the reason everything is fucked up
     '''
