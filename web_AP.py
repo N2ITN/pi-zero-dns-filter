@@ -23,8 +23,8 @@ def terminus(items):
             x.terminate()
         except Exception as e:
             print (e)
-        run_serial(restoreConf)
-        run_serial(envReset)
+        # run_serial(restoreConf)
+        # run_serial(envReset)
 
 
 try:
