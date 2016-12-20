@@ -16,15 +16,15 @@ def run_serial(commandList):
         print (e)
     print ()
 
-def terminus(x):
+def terminus(items):
     print ('terminating processes')    
-
-    try:
-        x.terminate()
-    except Exception as e:
-        print (e)
-    run_serial(restoreConf)
-    run_serial(envReset)
+    for x in items:
+        try:
+            x.terminate()
+        except Exception as e:
+            print (e)
+        run_serial(restoreConf)
+        run_serial(envReset)
 
 
 try:
@@ -50,16 +50,16 @@ try:
     # ''' env = run_serial(envConf) '''
     # wl = 
     # ws = 
-
+    terminus(actionItems)
 except Exception as e:
     if isinstance(e, KeyboardInterrupt):
         print ("KeyboardInterrupt")
-        stop()
+        terminus(actionItems)
         print (ws), print (type(ws))
     else: 
         "Error"
         print (e)
-        stop()
+        terminus(actionItems)
 
 
 
