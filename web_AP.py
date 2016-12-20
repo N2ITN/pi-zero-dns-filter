@@ -38,11 +38,7 @@ try:
     'touch ~/zer0/resolv.conf && echo "nameserver $WLAN_ADDR" >> ~/zer0/resolv.conf && chmod 644 ~/zer0/resolv.conf',
     'sudo mv resolv.conf /etc/resolv.conf', 'touch ~/zer0/dnsmasq.hosts && echo "$WLAN_ADDR ad-zero.io" >> ~/zer0/dnsmasq.hosts && chmod 644 ~/zer0/dnsmasq.hosts',
     'sudo mv dnsmasq.hosts /etc/dnsmasq.hosts']
-    '''
-
-    
     ## part of the above confusion
-    '''
     envReset = ['touch ~/zer0/resolv.conf && chmod 644 ~/zer0/resolv.conf', 'sudo mv resolv.conf /etc/resolv.conf', 
     'touch ~/zer0/dnsmasq.hosts && chmod 644 ~/zer0/dnsmasq.hosts','sudo mv dnsmasq.hosts /etc/dnsmasq.hosts']
     '''
@@ -50,8 +46,8 @@ try:
     sleep(7)
     ''' env = run_serial(envConf) '''
     wl = run_serial(wlan0)    
-    ws = run_serial(webServer)
     fdns = run_serial(fakeDNS)
+    ws = run_serial(webServer)
 
 except Exception as e:
     if isinstance(e, KeyboardInterrupt):
