@@ -25,6 +25,7 @@ def terminus(x):
         print (e)
     run_serial(restoreConf)
     run_serial(envReset)
+    stop = [terminus(i) for i in [ap, fnds,ws]]
 
 try:
     wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper" ]
@@ -48,7 +49,6 @@ try:
     ''' env = run_serial(envConf) '''
     wl = run_serial(wlan0)    
     ws = run_serial(webServer)
-    stop = [terminus(i) for i in [ap, fnds,ws]]
 
 except Exception as e:
     if isinstance(e, KeyboardInterrupt):
