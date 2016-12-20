@@ -16,13 +16,13 @@ def run_serial(commandList):
         print (e)
     print ()
 
-def terminus():
+def terminus(x):
     print ('terminating processes')    
-    for x in [ap, fnds,ws]:
-        try:
-            x.terminate()
-        except Exception as e:
-            print (e)
+
+    try:
+        x.terminate()
+    except Exception as e:
+        print (e)
     run_serial(restoreConf)
     run_serial(envReset)
 
@@ -48,6 +48,7 @@ try:
     ''' env = run_serial(envConf) '''
     wl = run_serial(wlan0)    
     ws = run_serial(webServer)
+    [terminus(i) for i in [ap, fnds,ws]]
 
 except Exception as e:
     if isinstance(e, KeyboardInterrupt):
