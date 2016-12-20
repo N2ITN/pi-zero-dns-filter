@@ -28,10 +28,9 @@ def terminus():
 
 try:
     wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper" ]
-    wlan0 = ["export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192`",
-    "sudo pkill dnsmasq"]
+    wlan0 = ["export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192`"]
     webServer = ['sudo netstat -plnt','sudo python3 webserver.py']
-    fakeDNS = ["su -c cd ~/fakedns && python3 fakedns.py $WLAN_ADDR"]
+    fakeDNS = ["sudo pkill dnsmasq", "cd /home/pirate/fakedns && python3 fakedns.py $WLAN_ADDR"]
 
 
     ## need to understand this part better, its the reason everything is fucked up
