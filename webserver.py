@@ -10,7 +10,7 @@ PORT_NUMBER = 80
 os.chdir('/home/pirate/zer0')
 z = open('web_log','a')
 print("**********") 
-sys.stdout = f
+sys.stdout = z
 print(pendulum.now('US/Pacific-New').ctime())
 #This class will handles any incoming request from
 #the browser 
