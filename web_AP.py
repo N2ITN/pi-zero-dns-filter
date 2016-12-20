@@ -29,7 +29,8 @@ def terminus():
 try:
     wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper" ]
     wlan0 = ["export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192`",
-    "sudo pkill dnsmasq",]
+    "sudo pkill dnsmasq"]
+    webServer = ['sudo netstat -plnt','sudo python3 webserver.py']
     fakeDNS = ["cd ~/fakedns && python3 fakedns.py $WLAN_ADDR"]
 
 
@@ -40,7 +41,6 @@ try:
     'sudo mv dnsmasq.hosts /etc/dnsmasq.hosts']
     '''
 
-    webServer = ['sudo netstat -plnt','sudo python3 webserver.py']
     
     ## part of the above confusion
     '''
@@ -51,8 +51,8 @@ try:
     sleep(7)
     ''' env = run_serial(envConf) '''
     wl = run_serial(wlan0)    
-    fdns = run_serial(fakeDNS)
     ws = run_serial(webServer)
+    fdns = run_serial(fakeDNS)
 
 except Exception as e:
     if isinstance(e, KeyboardInterrupt):
