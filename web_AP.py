@@ -29,7 +29,7 @@ def terminus():
 try:
     wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper" ]
     fakeDNS = ["sudo pkill dnsmasq", "cd ~/fakedns && python3 fakedns.py $WLAN_ADDR"]
-    wlan0 = ["export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192`"
+    wlan0 = ["export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192`"]
 
 
     ## need to understand this part better, its the reason everything is fucked up
