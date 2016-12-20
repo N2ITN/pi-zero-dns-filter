@@ -43,7 +43,8 @@ try:
     envReset = ['touch ~/zer0/resolv.conf && chmod 644 ~/zer0/resolv.conf', 'sudo mv resolv.conf /etc/resolv.conf', 
     'touch ~/zer0/dnsmasq.hosts && chmod 644 ~/zer0/dnsmasq.hosts','sudo mv dnsmasq.hosts /etc/dnsmasq.hosts']
     '''
-    actionItems = [run_serial(fakeDNS), run_serial(wireless_AP), run_serial(wlan0), run_serial(webServer)]
+    #run_serial(fakeDNS), 
+    actionItems = [run_serial(wireless_AP), run_serial(wlan0), run_serial(webServer)]
     # fdns = 
     # ap = 
     sleep(7)
