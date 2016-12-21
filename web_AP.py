@@ -33,7 +33,6 @@ try:
     webServer = ['sudo netstat -plnt','sudo python3 webserver.py']
     #fakeDNS = ["sudo pkill dnsmasq && cd /home/pirate/fakedns && python3 fakedns.py $WLAN_ADDR"]
 
-
     ## need to understand this part better, its the reason everything is fucked up
     '''
     'touch ~/zer0/resolv.conf && echo "nameserver $WLAN_ADDR" >> ~/zer0/resolv.conf && chmod 644 ~/zer0/resolv.conf',
@@ -46,19 +45,19 @@ try:
     #run_serial(fakeDNS), 
     actionItems = [run_serial(wireless_AP), run_serial(wlan0), run_serial(webServer)]
     # fdns = 
-    # ap = 
-    
+    # ap =    
     # ''' env = run_serial(envConf) '''
     # wl = 
-    # ws = 
-    terminus(actionItems)
+    # ws =
+    print('exiting on EOF') 
+    # terminus(actionItems)
 except Exception as e:
     if isinstance(e, KeyboardInterrupt):
         print ("KeyboardInterrupt")
         terminus(actionItems)
         print (ws), print (type(ws))
     else: 
-        "Error"
+        print("Error")
         print (e)
         terminus(actionItems)
 
