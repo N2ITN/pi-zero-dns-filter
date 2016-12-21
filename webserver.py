@@ -1,5 +1,6 @@
-#!/usr/bin/env python3
-from http.server import BaseHTTPRequestHandler,HTTPServer
+#!/usr/bin/env python2
+# from http.server import BaseHTTPRequestHandler,HTTPServer
+from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer 
 import os
 from os import curdir, sep
 import cgi
