@@ -29,7 +29,7 @@ def terminus(items):
 
 try:
     wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper" ]
-    wlan0 = ["export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192`"]
+    wlan0 = ["sleep(7)" ,"export WLAN_ADDR=`ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192`"]
     webServer = ['sudo netstat -plnt','sudo python3 webserver.py']
     #fakeDNS = ["sudo pkill dnsmasq && cd /home/pirate/fakedns && python3 fakedns.py $WLAN_ADDR"]
 
@@ -47,7 +47,7 @@ try:
     actionItems = [run_serial(wireless_AP), run_serial(wlan0), run_serial(webServer)]
     # fdns = 
     # ap = 
-    sleep(7)
+    
     # ''' env = run_serial(envConf) '''
     # wl = 
     # ws = 
