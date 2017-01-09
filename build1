@@ -70,10 +70,8 @@ $ ifup wlan0
 
 
 
-add to /etc/init.d/rc.local
+# add to /etc/rc.local:
  bash ~/launcher.sh
-
-
 
 
 

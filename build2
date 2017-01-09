@@ -1,13 +1,13 @@
 build1.5
 
-Experimental volume persistence
+# Volume persistence
 
-On pi:
+# on pi:
+
 sudo touch /var/log/pihole.log
 sudo mkdir /etc/pihole/
 
-
-add to docker run statement in pi.sh
+# add to docker run statement in pi.sh:
 docker run -v /var/log/pihole.log:/var/log/pihole.log
 /etc/pihole/:/etc/pihole/
 
@@ -15,9 +15,6 @@ docker run -v /var/log/pihole.log:/var/log/pihole.log
 
 docker pull diginc/pi-hole:arm
 docker rm -f pihole
-
-
-
 
 # Pi-hole: Update the ad sources once a week on Sunday at 01:59
 #          Download any updates from the adlists
@@ -35,21 +32,38 @@ docker exec pihole pihole updateGravity
 sudo chmod 755  /var/log/pihole.log
 
 
+
+pihole.sh
+
+
 docker stop pihole
 docker rm pihole
 IMAGE='diginc/pi-hole:arm'
 NIC='wlan0'
 IP=$(ip addr show $NIC | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
-docker run -v /var/log/pihole.log:/var/log/pihole.log -v /etc/pihole/:/etc/pihole/ -p 53:53/tcp -p 53:53/udp -p 80:80 --cap-ad$
+docker run -v /var/log/pihole.log:/var/log/pihole.log -v /etc/pihole/:/etc/pihole/ -p 53:53/tcp -p 53:53/udp -p 80:80 --cap-add=NET_ADMIN -e ServerIP="$IP" --name pihole -d $IMAGE
 
 # Recommended auto ad list updates & log rotation:
-wget -O- https://raw.githubusercontent.com/diginc/docker-pi-hole/master/docker-pi-hole.cron | sudo tee /etc/cron.d/docker-pi-h$
-
-
+wget -O- https://raw.githubusercontent.com/diginc/docker-pi-hole/master/docker-pi-hole.cron | sudo tee /etc/cron.d/docker-pi-hole
 
 
 
 NEXT :::::: ADD:::: 
--v your-adlists.list:/etc/pihole/adlists.list
 
 
+
+###### Untested:
+ added:
+  syncing of web resources, adlists
+  auto start 
+
+
+docker stop pihole
+docker rm pihole
+IMAGE='diginc/pi-hole:arm'
+NIC='wlan0'
+IP=$(ip addr show $NIC | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
+docker run -v /var/log/pihole.log:/var/log/pihole.log -v /etc/pihole/:/etc/pihole/ -v ~/adlists.list:/etc/pihole/adlists.list -v ~/html:/var/www/html/  -p 53:53/tcp -p 53:53/udp -p 80:80 --cap-add=NET_ADMIN -e ServerIP="$IP" --restart=always --name pihole -d $IMAGE
+
+# Recommended auto ad list updates & log rotation:
+wget -O- https://raw.githubusercontent.com/diginc/docker-pi-hole/master/docker-pi-hole.cron | sudo tee /etc/cron.d/docker-pi-hole
