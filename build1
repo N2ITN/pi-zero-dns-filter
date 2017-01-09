@@ -68,8 +68,6 @@ $ ifup wlan0
 
 
 
-
-
 # add to /etc/rc.local:
  bash ~/launcher.sh
 
