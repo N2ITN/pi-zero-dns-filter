@@ -29,7 +29,7 @@ class myHandler(BaseHTTPRequestHandler):
             self.send_header('Content-type', mimetype)
             self.end_headers()
             
-            self.wfile.write("<p>You accessed path: %s</p>" % bytes(f.read(), "utf-8") )
+            self.wfile.write(b"<p>You accessed path: %s</p>" % f.read() )
             f.close()
         except IOError:
             self.send_error(404, 'File Not Found: %s' % self.path)
