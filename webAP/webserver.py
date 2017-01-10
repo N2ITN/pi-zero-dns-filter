@@ -20,37 +20,22 @@ class myHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/":
             self.path = "/app.html"
-
+        mimetype = "text/html"
+        sendReply = True
+        #Open the static file requested and send it
         try:
-            #set the right mime type
-
-            sendReply = False
-            mimeDict = {
-                ".html": 'text/html',
-                ".jpg": 'image/jpg',
-                ".gif": 'image/gif',
-                ".js": 'application/javascript',
-                ".css": 'text/css'
-            }
-            for k in mimeDict.keys():
-                if self.path.endswith(k):
-                    mimetype = mimeDict[k]
-                    sendReply = True
-
-            if sendReply == True:
-                #Open the static file requested and send it
-                f = open(curdir + sep + self.path)
-                self.send_response(200)
-                self.send_header('Content-type', mimetype)
-                self.end_headers()
-                self.wfile.write(f.read())
-                f.close()
-            return
-
+            f = open(curdir + sep + self.path)
+            self.send_response(200)
+            self.send_header('Content-type', mimetype)
+            self.end_headers()
+            self.wfile.write(bytes(f.read()))
+            f.close()
         except IOError:
             self.send_error(404, 'File Not Found: %s' % self.path)
+            return
 
-    #Handler for the POST requests
+#Handler for the POST requests
+
     def do_POST(self):
         if self.path == "/send":
             form = cgi.FieldStorage(
@@ -77,8 +62,6 @@ class myHandler(BaseHTTPRequestHandler):
                     'iface wlan0 inet dhcp', 'wpa-ssid ' + self.network,
                     'wpa-psk ' + psk
                 ]))
-             
-
 
 try:
     #Create a web server and define the handler to manage the
