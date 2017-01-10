@@ -6,7 +6,6 @@ import sys
 import pendulum
 import subprocess
 PORT_NUMBER = 80
-os.chdir('/home/pirate/')
 z = open('web_log', 'a')
 print("**********")
 sys.stdout = z
