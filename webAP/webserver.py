@@ -28,7 +28,7 @@ class myHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-type', mimetype)
             self.end_headers()
-            self.wfile.write(bytes(f.read()))
+            self.wfile.write(f.read(),'wt')
             f.close()
         except IOError:
             self.send_error(404, 'File Not Found: %s' % self.path)
