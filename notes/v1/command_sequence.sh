@@ -1,8 +1,8 @@
 
 # Get libraries
-docker pull gojira00/pi-hole-2016:arm
+docker pull diginc/pi-hole:arm
 cd ~
-git clone https://github.com/N2ITN/pi-zero-accesspoint-adblocker.git zer0
+# git clone https://github.com/N2ITN/pi-zero-accesspoint-adblocker.git zer0
 git clone https://github.com/N2ITN/create_ap.git
 
 
@@ -40,7 +40,7 @@ cd ~ && git clone https://github.com/pathes/fakedns.git
 # Serve portainer container viewer from localhost if SSH session is started
 echo "docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock --name furiosa portainer/portainer:arm > error_catcher.s 2> /dev/null" >> ~/.profile 
 echo "docker start furiosa" >> ~/.profile
-echo "cd zero" >> ~/.profile
+echo "cd zer0" >> ~/.profile
 
 
 # In case of git
