@@ -24,7 +24,7 @@ class myHandler(BaseHTTPRequestHandler):
         sendReply = True
         #Open the static file requested and send it
         try:
-            s = (curdir + sep + self.path).encode('utf_8')
+            s = bytes(curdir + sep + self.path,'utf-8')
             f = open(s)
             self.send_response(200)
             self.send_header('Content-type', mimetype)
