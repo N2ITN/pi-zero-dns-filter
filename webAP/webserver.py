@@ -1,6 +1,4 @@
-#!/usr/bin/env python2
-# from http.server import BaseHTTPRequestHandler,HTTPServer
-from http.server import BaseHTTPRequestHandler,HTTPServer 
+from http.server import BaseHTTPRequestHandler, HTTPServer
 import os
 from os import curdir, sep
 import cgi
@@ -8,105 +6,97 @@ import sys
 import pendulum
 import subprocess
 PORT_NUMBER = 80
-os.chdir('/home/pirate/zer0')
-z = open('web_log','a')
-print("**********") 
+os.chdir('/home/pirate/')
+z = open('web_log', 'a')
+print("**********")
 sys.stdout = z
 print((pendulum.now('US/Pacific-New').ctime()))
+
+
 #This class will handles any incoming request from
 #the browser 
 class myHandler(BaseHTTPRequestHandler):
-    
+
     #Handler for the GET requests
     def do_GET(self):
-        if self.path=="/":
-            self.path="/app.html"
+        if self.path == "/":
+            self.path = "/app.html"
 
         try:
-            #Check the file extension required and
             #set the right mime type
 
             sendReply = False
-            if self.path.endswith(".html"):
-                mimetype='text/html'
-                sendReply = True
-            if self.path.endswith(".jpg"):
-                mimetype='image/jpg'
-                sendReply = True
-            if self.path.endswith(".gif"):
-                mimetype='image/gif'
-                sendReply = True
-            if self.path.endswith(".js"):
-                mimetype='application/javascript'
-                sendReply = True
-            if self.path.endswith(".css"):
-                mimetype='text/css'
-                sendReply = True
+            mimeDict = {
+                ".html": 'text/html',
+                ".jpg": 'image/jpg',
+                ".gif": 'image/gif',
+                ".js": 'application/javascript',
+                ".css": 'text/css'
+            }
+            for k in mimeDict.keys():
+                if self.path.endswith(k):
+                    mimetype = mimeDict[k]
+                    sendReply = True
 
             if sendReply == True:
                 #Open the static file requested and send it
-                f = open(curdir + sep + self.path) 
+                f = open(curdir + sep + self.path)
                 self.send_response(200)
-                self.send_header('Content-type',mimetype)
+                self.send_header('Content-type', mimetype)
                 self.end_headers()
                 self.wfile.write(f.read())
                 f.close()
             return
 
         except IOError:
-            self.send_error(404,'File Not Found: %s' % self.path)
+            self.send_error(404, 'File Not Found: %s' % self.path)
 
     #Handler for the POST requests
     def do_POST(self):
-        if self.path=="/send":
+        if self.path == "/send":
             form = cgi.FieldStorage(
-                fp=self.rfile, 
+                fp=self.rfile,
                 headers=self.headers,
-                environ={'REQUEST_METHOD':'POST',
-                         'CONTENT_TYPE':self.headers['Content-Type'],
-            })
+                environ={
+                    'REQUEST_METHOD': 'POST',
+                    'CONTENT_TYPE': self.headers['Content-Type'],
+                })
 
-            print(("Connecting to: %s" % form["network"].value))
-            print(("Password: %s" % form["password"].value))
             self.send_response(200)
             self.end_headers()
-            self.wfile.write("Connecting to: %s" % form["network"].value)
             self.network = form["network"].value
             self.passkey = form["password"].value
-            try: 
-                print('shutting down web server')
-                server.socket.close()
-                reconnect(self.network, self.passkey)
-                exit(0)
-            except Exception as e:
-                print(e)
-                f.close()
-                server.socket.close()
-                exit(1)
-                
             server.socket.close()
-def reconnect(network,passkey):
-    with open('credentials.txt','w') as out:
-        out.write(' '.join([network, passkey]))
-    f.close()
-    
-    
-    #os.system('sudo python connect_wifi.py')
+
+        def reconnect(self):
+            psk = os.system('wpa_passphrase myssid my_very_secret_passphrase')
+
+            with open('interfaces-wlan0', 'w') as wifiCreds:
+                # /etc/network/interfaces.d/wlan0
+                wifiCreds.write('\n'.join([
+                    'allow-hotplug wlan0', 'auto wlan0',
+                    'iface wlan0 inet dhcp', 'wpa-ssid ' + self.network,
+                    'wpa-psk ' + psk
+                ]))
+             
+
+
 try:
     #Create a web server and define the handler to manage the
     #incoming request
-    host = str(subprocess.check_output(" ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192",shell=True))[2:-3]
-
+    host = str(
+        subprocess.check_output(
+            "ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192",
+            shell=True))[2:-3]
 
     #host = '192.168.12.1'
     #print os.environ.keys()
     #host = os.environ['WLAN_ADDR']
     server = HTTPServer((host, PORT_NUMBER), myHandler)
-    print(('Started httpserver on port ' ,host, PORT_NUMBER))
+    print(('Started httpserver on port ', host, PORT_NUMBER))
     #Wait forever for incoming htto requests
     server.serve_forever()
 
 except KeyboardInterrupt:
     print('^C received, shutting down the web server')
     server.socket.close()
-    
