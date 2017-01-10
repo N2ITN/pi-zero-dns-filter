@@ -7,13 +7,15 @@ build1.5
 sudo mkdir mnt
 sudo mkdir mnt/etc/
 sudo mkdir mnt/log/
+sudo mkdir mnt/html
+sudo chmod 755 mnt/html
 sudo touch mnt/log/pihole.log
 sudo chmod 755  mnt/log/pihole.log
-sudo mkdir mnt/html
 
 
 
-pihole.sh
+pihole_persist.sh
+
 
 
 docker stop pihole
@@ -21,29 +23,29 @@ docker rm pihole
 IMAGE='diginc/pi-hole:arm'
 NIC='wlan0'
 IP=$(ip addr show $NIC | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
-docker run -v /var/log/pihole.log:/var/log/pihole.log -v /etc/pihole/:/etc/pihole/ -p 53:53/tcp -p 53:53/udp -p 80:80 --cap-add=NET_ADMIN -e ServerIP="$IP" --name pihole -d $IMAGE
+docker run -v ~/mnt/log/pihole.log:/var/log/pihole.log -v ~/mnt/etc/:/etc/pihole/ -p 53:53/tcp -p 53:53/udp -p 80:80 --cap-add=NET_ADMIN -e ServerIP=$
 
 # Recommended auto ad list updates & log rotation:
 wget -O- https://raw.githubusercontent.com/diginc/docker-pi-hole/master/docker-pi-hole.cron | sudo tee /etc/cron.d/docker-pi-hole
 
 
 
-NEXT :::::: ADD:::: 
+# copy html as well
+
+
+sudo docker cp pihole:/var/www/html/ ~/mnt/
+-v ~/mnt/html/:/var/www/html/
 
 
 
-###### Untested:
- added:
-  syncing of web resources, adlists
-  auto start 
+## DOESNT WORK. need to get addr then sent to docker I think.
+~/mnt/etc/setupVars.conf
+IPv4_address=192.168.0.8
+IP6=$(ip addr show wlan0 | grep "inet6\b" | awk '{print $2}' | cut -d/ -f1)
+IPv6_address=$IP6
 
 
-docker stop pihole
-docker rm pihole
-IMAGE='diginc/pi-hole:arm'
-NIC='wlan0'
-IP=$(ip addr show $NIC | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
-docker run -v /var/log/pihole.log:/var/log/pihole.log -v /etc/pihole/:/etc/pihole/ -v ~/adlists.list:/etc/pihole/adlists.list -v ~/html/:/var/www/html/  -p 53:53/tcp -p 53:53/udp -p 80:80 --cap-add=NET_ADMIN -e ServerIP="$IP" --restart=always --name pihole -d $IMAGE
 
-# Recommended auto ad list updates & log rotation:
-wget -O- https://raw.githubusercontent.com/diginc/docker-pi-hole/master/docker-pi-hole.cron | sudo tee /etc/cron.d/docker-pi-hole
+
+# NEXT :::::: ADD:::: 
+ --restart=always 
