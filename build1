@@ -1,0 +1,81 @@
+A+ pi-hole minimal build (Christmas edition)
+not production ready but possible close
+hypriotOS
+
+before first boot edit yaml on SD card for ssid
+
+ssh pirate@black-pearl.local
+
+make host at port 80:
+    http://black-pearl.local
+
+
+docker pull gojira00/pi-hole-2016:arm
+
+
+nano launcher.sh
+
+~~~~~~~~
+IMAGE='gojira00/pi-hole-2016:arm'
+NIC='wlan0'
+IP=$(ip addr show $NIC | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
+docker run -p 53:53/tcp -p 53:53/udp -p 80:80 --cap-add=NET_ADMIN -e ServerIP="$IP" --name pihole -d $IMAGE
+
+# Recommended auto ad list updates & log rotation:
+wget -O- https://raw.githubusercontent.com/diginc/docker-pi-hole/master/docker-pi-hole.cron | sudo tee /etc/cron.d/docker-pi-hole
+~~~~~~~~~
+chmod +x launcher.sh
+
+
+
+TODO:
+
+use existing code, but post page / hotspot to http://black-pearl.local:80
+need to find out where change preferred wlan0 network
+
+STARTUP:
+No DNS fuckery, just:
+
+
+if lo wlan0 connected:
+    launcher.sh
+else:
+    start AP, web server  http://black-pearl.local:80
+    get credentials
+
+    get hash of wpa-psk
+    $ wpa_passphrase myssid my_very_secret_passphrase
+
+
+    turn off interface 
+    $ ifup wlan0
+
+
+    change ‘wpa-ssid” and “wpa-psk” of /etc/network/interfaces.d/wlan0:
+
+~~~~~
+allow-hotplug wlan0
+
+auto wlan0
+iface wlan0 inet dhcp
+  wpa-ssid belkin.5a9_EXT
+  wpa-psk 16cc7c302aaf7a652ce1307ae63dd889bc7a929ce9092df3577afdd4f123b993
+~~~~
+
+then:
+$ ifup wlan0
+
+
+
+
+# add to /etc/rc.local:
+ bash ~/launcher.sh
+
+
+
+then added dataplicity for remote ssh access
+
+
+TODO:
+
+make black-pearl.local/wifi STATIC so ppl can re enter
