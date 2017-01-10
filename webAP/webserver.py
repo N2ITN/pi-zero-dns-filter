@@ -24,12 +24,13 @@ class myHandler(BaseHTTPRequestHandler):
         sendReply = True
         #Open the static file requested and send it
         try:
-            f = open(curdir + sep + self.path)
+            s = b"curdir + sep + self.path"
+            f = open(s)
             self.send_response(200)
             self.send_header('Content-type', mimetype)
             self.end_headers()
             
-            self.wfile.write(b"<p>You accessed path: %s</p>" % f.read() )
+            self.wfile.write(b"<p>You accessed path: %s</p>" % f.read )
             f.close()
         except IOError:
             self.send_error(404, 'File Not Found: %s' % self.path)
