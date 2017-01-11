@@ -48,13 +48,14 @@ class myHandler(BaseHTTPRequestHandler):
     def reconnect(self):
         wpa = subprocess.check_output(
             "wpa_passphrase" + self.network, self.passkey, shell=False)
-        psk = wpa.replace('\n}\n', '').rsplit('\tpsk=')[1]
+        psk = psk.split('=')[-1].split('\n')[0]
         with open('interfaces-wlan0', 'w') as wifiCreds:
-            # /etc/network/interfaces.d/wlan0
+            
             wifiCreds.write('\n'.join([
                 'allow-hotplug wlan0', 'auto wlan0', 'iface wlan0 inet dhcp',
                 'wpa-ssid ' + self.network, 'wpa-psk ' + psk
             ]))
+        # move to /etc/network/interfaces.d/wlan0
 try:
     #Create a web server and define the handler to manage the
     #incoming request
