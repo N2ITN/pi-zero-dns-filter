@@ -48,8 +48,7 @@ class myHandler(BaseHTTPRequestHandler):
     def reconnect(self):
 
         wpa = subprocess.check_output(
-            "wpa_passphrase" + self.network,
-            self.passkey,
+            ' '.join(["wpa_passphrase", self.network, self.passkey]),
             shell=False,
             stderr=subprocess.STDOUT)
 
