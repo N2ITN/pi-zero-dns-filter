@@ -12,29 +12,17 @@ sys.stdout = z
 print((pendulum.now('US/Pacific-New').ctime()))
 
 
-#This class will handles any incoming request from
-#the browser 
+#This class will handles incoming requests from the browser 
 class myHandler(BaseHTTPRequestHandler):
 
-    #Handler for the GET requests
     def do_GET(self):
-        if self.path == "/":
-            self.path = "/app.html"
-        mimetype = "text/html"
-        sendReply = True
-        #Open the static file requested and send it
-        try:
-            s = bytes(curdir + sep + self.path,'utf-8')
-            f = open(s)
-            self.send_response(200)
-            self.send_header('Content-type', mimetype)
-            self.end_headers()
-            
-            self.wfile.write(b"<p>You accessed path: %s</p>" % f.read )
-            f.close()
-        except IOError:
-            self.send_error(404, 'File Not Found: %s' % self.path)
-            return
+        self.path = "app.html"
+        p = os.getcwd() + sep + self.path
+        f = open(p, 'rb')
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write(f.read())
 
 #Handler for the POST requests
 
@@ -52,19 +40,21 @@ class myHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.network = form["network"].value
             self.passkey = form["password"].value
-            server.socket.close()
+            self.reconnect()
+            self.wfile.write(b"Connecting to: " + bytes(form["network"].value,
+                                                        'utf-8') + b'\n')
+            self.wfile.write(b"Rebooting...")
 
-        def reconnect(self):
-            psk = os.system('wpa_passphrase myssid my_very_secret_passphrase')
-
-            with open('interfaces-wlan0', 'w') as wifiCreds:
-                # /etc/network/interfaces.d/wlan0
-                wifiCreds.write('\n'.join([
-                    'allow-hotplug wlan0', 'auto wlan0',
-                    'iface wlan0 inet dhcp', 'wpa-ssid ' + self.network,
-                    'wpa-psk ' + psk
-                ]))
-
+    def reconnect(self):
+        wpa = subprocess.check_output(
+            "wpa_passphrase" + self.network, self.passkey, shell=True)
+        psk = wpa.replace('\n}\n', '').rsplit('\tpsk=')[1]
+        with open('interfaces-wlan0', 'w') as wifiCreds:
+            # /etc/network/interfaces.d/wlan0
+            wifiCreds.write('\n'.join([
+                'allow-hotplug wlan0', 'auto wlan0', 'iface wlan0 inet dhcp',
+                'wpa-ssid ' + self.network, 'wpa-psk ' + psk
+            ]))
 try:
     #Create a web server and define the handler to manage the
     #incoming request
@@ -78,7 +68,7 @@ try:
     #host = os.environ['WLAN_ADDR']
     server = HTTPServer((host, PORT_NUMBER), myHandler)
     print(('Started httpserver on port ', host, PORT_NUMBER))
-    #Wait forever for incoming htto requests
+    #Wait forever for incoming http requests
     server.serve_forever()
 
 except KeyboardInterrupt:
