@@ -52,8 +52,7 @@ class myHandler(BaseHTTPRequestHandler):
                 'allow-hotplug wlan0', 'auto wlan0', 'iface wlan0 inet dhcp',
                 'wpa-ssid ' + self.network, 'wpa-psk ' + psk
             ]))
-        self.wfile.write(b"Connecting to: " + bytes(form["network"].value,
-                                                    'utf-8') + b'\n')
+        self.wfile.write(b"Connecting to: " + bytes(self.network,' utf-8') + b'\n')
         self.wfile.write(b"Rebooting...")
         os.system('mv interfaces-wlan0 /etc/network/interfaces.d/wlan0')
         os.system('reboot now')
