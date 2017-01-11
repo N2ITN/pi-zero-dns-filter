@@ -17,8 +17,8 @@ def run_serial(commandList):
     print()
 
 
+ssid = "iwconfig wlan0 | grep ESSID | awk -F: '{print $2}'"
 if len(str(subprocess.check_output(ssid, shell=True)).split('"')[1]) > 0:
-    ssid = "iwconfig wlan0 | grep ESSID | awk -F: '{print $2}'"
     subprocess.call("cd ~ && bash pihole_persist.sh")
 else:
     os.chdir('~/')
