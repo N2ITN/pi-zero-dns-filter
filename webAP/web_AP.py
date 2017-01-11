@@ -1,10 +1,10 @@
 import subprocess
 import os
 
-ssid = "iwconfig wlan0 | grep ESSID | awk -F: '{print $2}'"
+ssid_get = "iwconfig wlan0 | grep ESSID | awk -F: '{print $2}'"
 ssid_bash = str(subprocess.check_output(ssid, shell=True))
-print(ssid_bash)
-if len(ssid_bash.split('"')[1]) > 0:
+ssid = ssid_bash.split('"')[1]
+if len(ssid) > 0:
     if not os.path.exists("/home/pirate/mnt"):
         subprocess.call("mk_dirs.sh", shell=True)
     subprocess.Popen("bash ~/pi-zero-master/pihole_persist.sh", shell=True)
