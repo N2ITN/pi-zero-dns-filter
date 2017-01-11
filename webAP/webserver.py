@@ -47,7 +47,7 @@ class myHandler(BaseHTTPRequestHandler):
 
     def reconnect(self):
         wpa = subprocess.check_output(
-            "wpa_passphrase" + self.network, self.passkey, shell=True)
+            "wpa_passphrase" + self.network, self.passkey, shell=False)
         psk = wpa.replace('\n}\n', '').rsplit('\tpsk=')[1]
         with open('interfaces-wlan0', 'w') as wifiCreds:
             # /etc/network/interfaces.d/wlan0
