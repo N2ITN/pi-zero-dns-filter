@@ -46,14 +46,9 @@ class myHandler(BaseHTTPRequestHandler):
             self.wfile.write(b"Rebooting...")
 
     def reconnect(self):
-
-        wpa = subprocess.check_output(
-            ' '.join(["(wpa_passphrase", self.network, self.passkey,')']),
-            shell=False,
-            stderr=subprocess.STDOUT)
-
+        call = ' '.join(["(wpa_passphrase", self.network, self.passkey, ')'])
+        wpa = subprocess.check_output(call, shell=True)
         psk = psk.split('=')[-1].split('\n')[0]
-
         with open('interfaces-wlan0', 'w') as wifiCreds:
             wifiCreds.write('\n'.join([
                 'allow-hotplug wlan0', 'auto wlan0', 'iface wlan0 inet dhcp',
