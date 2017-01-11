@@ -19,7 +19,7 @@ def run_serial(commandList):
 
 ssid = "iwconfig wlan0 | grep ESSID | awk -F: '{print $2}'"
 if len(str(subprocess.check_output(ssid, shell=True)).split('"')[1]) > 0:
-    subprocess.call("cd ~ && bash pihole_persist.sh")
+    subprocess.call("cd ~ && bash ~/pihole_persist.sh")
 else:
     os.chdir('~/')
     wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper"]
