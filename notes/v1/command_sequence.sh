@@ -25,9 +25,9 @@ sudo pip3 install wifi
 sudo pip3 install pendulum
 # Add startup script command
 > rc.local
-echo "cd ~/zer0" >> rc.local
+echo "cd ~/pi-zero-master/webAP" >> rc.local
 echo "git pull" >> rc.local
-echo "sudo bash startup.sh &" >> rc.local
+echo "sudo python3 web_AP.py >> rc.local
 echo "exit 0" >> rc.local
 sed -i "1i #!/bin/bash"  rc.local
 chmod 755 rc.local

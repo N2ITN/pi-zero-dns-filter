@@ -17,33 +17,21 @@ def run_serial(commandList):
     print()
 
 
-def terminus(items):
-    print('terminating processes')
-    for x in items:
-        try:
-            x.terminate()
-        except Exception as e:
-            print(e)
-        # run_serial(restoreConf)
-        # run_serial(envReset)
-
-
 try:
-    wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper"]
-    ssid = "iwconfig wlan0 | grep ESSID | awk -F: '{print $2}'"
-    if len(subprocess.check_output(ssid,shell=True).split('"')[1]) > 0:
-        
-    webServer = ['sudo netstat -plnt', 'sudo python webserver.py']
 
-    actionItems = [run_serial(wireless_AP), run_serial(webServer)]
-    print('exiting on EOF')
-    terminus(actionItems)
+    ssid = "iwconfig wlan0 | grep ESSID | awk -F: '{print $2}'"
+    if len(subprocess.check_output(ssid, shell=True).split('"')[1]) > 0:
+        subprocess.call("cd ~ && bash pihole_persist.sh")
+    else:
+        os.chdir('~/')
+        wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper"]
+        webServer = ['sudo python3 webserver.py']
+        actionItems = [run_serial(wireless_AP), run_serial(webServer)]
+
 except Exception as e:
     if isinstance(e, KeyboardInterrupt):
         print("KeyboardInterrupt")
-        terminus(actionItems)
         print(ws), print(type(ws))
     else:
         print("Error")
         print(e)
-        terminus(actionItems)
