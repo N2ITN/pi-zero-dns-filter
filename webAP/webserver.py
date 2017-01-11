@@ -41,9 +41,6 @@ class myHandler(BaseHTTPRequestHandler):
             self.network = form["network"].value
             self.passkey = form["password"].value
             self.reconnect()
-            self.wfile.write(b"Connecting to: " + bytes(form["network"].value,
-                                                        'utf-8') + b'\n')
-            self.wfile.write(b"Rebooting...")
 
     def reconnect(self):
         call = ' '.join(["(wpa_passphrase", self.network, self.passkey, ')'])
@@ -55,8 +52,13 @@ class myHandler(BaseHTTPRequestHandler):
                 'allow-hotplug wlan0', 'auto wlan0', 'iface wlan0 inet dhcp',
                 'wpa-ssid ' + self.network, 'wpa-psk ' + psk
             ]))
-        return
-        # move to /etc/network/interfaces.d/wlan0
+        self.wfile.write(b"Connecting to: " + bytes(form["network"].value,
+                                                    'utf-8') + b'\n')
+        self.wfile.write(b"Rebooting...")
+        os.system('mv interfaces-wlan0 /etc/network/interfaces.d/wlan0')
+        os.system('reboot now')
+        
+        
 try:
     #Create a web server and define the handler to manage the
     #incoming request
