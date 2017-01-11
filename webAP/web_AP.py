@@ -7,7 +7,7 @@ print(ssid_bash)
 if len(ssid_bash.split('"')[1]) > 0:
     if not os.path.exists("~/mnt"):
         subprocess.call("mk_dirs.sh", shell=True)
-    subprocess.call("bash ~/pihole_persist.sh", shell=True)
+    subprocess.call("bash ~/pi-zero-master/pihole_persist.sh", shell=True)
 else:
     os.chdir('~/')
     wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper"]
