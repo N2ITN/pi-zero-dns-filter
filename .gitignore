@@ -2,3 +2,4 @@
 credentials.txt
 nohup.out
 *.save
+*.vscode
