@@ -1,9 +1,9 @@
 import subprocess
 
 ssid = "iwconfig wlan0 | grep ESSID | awk -F: '{print $2}'"
-ssid_bash = str(subprocess.check_output(ssid, shell=True)
-print ssid_bash
-if len(ssid_bash).split('"')[1]) > 0:
+ssid_bash = str(subprocess.check_output(ssid, shell=True))
+print(ssid_bash)
+if len(ssid_bash).split('"')[1] > 0:
     subprocess.call("bash ~/pihole_persist.sh", shell=True)
 else:
     os.chdir('~/')
