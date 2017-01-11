@@ -2,7 +2,7 @@ import subprocess
 
 ssid = "iwconfig wlan0 | grep ESSID | awk -F: '{print $2}'"
 if len(str(subprocess.check_output(ssid, shell=True)).split('"')[1]) > 0:
-    subprocess.call("cd ~ && bash /home/pirate/pihole_persist.sh", shell=True)
+    subprocess.call("su pirate && cd ~ && bash ~/pihole_persist.sh", shell=True)
 else:
     os.chdir('~/')
     wireless_AP = ["sudo create_ap -n wlan0 zer0 adzapper"]
