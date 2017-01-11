@@ -41,7 +41,7 @@ class myHandler(BaseHTTPRequestHandler):
             self.network = form["network"].value
             self.passkey = form["password"].value
             self.reconnect()
-
+            self.reboot()
     def reconnect(self):
         call = ' '.join(["(wpa_passphrase", self.network, self.passkey, ')'])
         wpa = str(subprocess.check_output(call, shell=True))
@@ -54,8 +54,14 @@ class myHandler(BaseHTTPRequestHandler):
             ]))
         self.wfile.write(b"Connecting to: " + bytes(self.network,' utf-8') + b'\n')
         self.wfile.write(b"Rebooting...")
+        return
+    def reboot(self):
+        from import sleep
+        sleep(5)
         os.system('mv interfaces-wlan0 /etc/network/interfaces.d/wlan0')
         os.system('reboot now')
+
+
         
         
 try:
