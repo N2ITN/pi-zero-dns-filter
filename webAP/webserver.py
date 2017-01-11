@@ -49,7 +49,7 @@ class myHandler(BaseHTTPRequestHandler):
         call = ' '.join(["(wpa_passphrase", self.network, self.passkey, ')'])
         wpa = str(subprocess.check_output(call, shell=True))
 
-        psk = wpa.split('=')[-1].split('\n')[0]
+        psk = wpa.split('=')[-1].split('\n}\n')[0]
         with open('interfaces-wlan0', 'w') as wifiCreds:
             wifiCreds.write('\n'.join([
                 'allow-hotplug wlan0', 'auto wlan0', 'iface wlan0 inet dhcp',
