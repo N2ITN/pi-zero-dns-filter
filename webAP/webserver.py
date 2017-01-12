@@ -6,9 +6,9 @@ import sys
 import pendulum
 import subprocess
 PORT_NUMBER = 80
-z = open('web_log', 'w')
+
 print("**********")
-sys.stdout = z
+
 print((pendulum.now('US/Pacific-New').ctime()))
 
 
