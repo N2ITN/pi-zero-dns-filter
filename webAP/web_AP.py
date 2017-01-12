@@ -11,7 +11,6 @@ try:
     subprocess.Popen("bash ~/pi-zero-master/pihole_persist.sh", shell=True)
 
 except IndexError:
-    os.chdir('~/')
     wireless_AP = ["sudo ifdown wlan0; sudo create_ap -n wlan0 zer0 adzapper"]
     webServer = ['sudo python3 webserver.py']
     subprocess.Popen(''.join([wireless_AP, webServer]), shell=True)
