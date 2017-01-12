@@ -62,7 +62,7 @@ class myHandler(BaseHTTPRequestHandler):
         from time import sleep
         sleep(5)
         os.system('sudo mv interfaces-wlan0 /etc/network/interfaces.d/wlan0')
-        os.system('reboot now')
+        os.system('sudo reboot now')
 
 try:
     #Create a web server and define the handler to manage the
