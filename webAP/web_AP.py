@@ -16,4 +16,4 @@ except IndexError:
     webserver = "sudo python3 /home/pirate/pi-zero-master/webAP/webserver.py &> ~/webServerlog"
     subprocess.Popen(wireless_AP, shell=True)
     time.sleep(10)
-    subprocess.Popen(webServer, shell=True)
+    subprocess.Popen(webserver, shell=True)
