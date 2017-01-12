@@ -11,6 +11,6 @@ try:
     subprocess.Popen("bash ~/pi-zero-master/pihole_persist.sh", shell=True)
 
 except IndexError:
-    wireless_AP = "sudo ifdown wlan0; sudo create_ap -n wlan0 zer0 adzapper"
-    webServer = "sudo python3 webserver.py"
+    wireless_AP = "sudo ifdown wlan0; sudo create_ap -n wlan0 zer0 adzapper &> /home/pirate/APlog"
+    webServer = "sudo python3 webserver.py &> /home/pirate/webServerlog"
     subprocess.Popen(" & ".join([wireless_AP, webServer]), shell=True)
