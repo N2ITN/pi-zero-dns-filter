@@ -61,8 +61,7 @@ class myHandler(BaseHTTPRequestHandler):
     def reboot(self):
         from time import sleep
         sleep(5)
-        os.system('sudo mv interfaces-wlan0 /etc/network/interfaces.d/wlan0')
-        os.system('sudo reboot now')
+        subprocess.Popen('bash reboot.sh')
 
 try:
     #Create a web server and define the handler to manage the
