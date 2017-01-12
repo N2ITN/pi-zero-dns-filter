@@ -10,7 +10,7 @@ git clone https://github.com/N2ITN/create_ap.git
 sudo aptitude update
 sudo aptitude upgrade -y
 
-
+''' sudo  dpkg-reconfigure tzdata  ## america/los angeles'''
 # Install access point
 sudo apt-get install util-linux procps hostapd iproute2 iw haveged make dnsmasq iptables -y
 cd ~/create_ap

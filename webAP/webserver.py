@@ -66,10 +66,7 @@ class myHandler(BaseHTTPRequestHandler):
 try:
     #Create a web server and define the handler to manage the
     #incoming request
-    host = str(
-        subprocess.check_output(
-            "ifconfig wlan0 | grep 'inet addr' | awk '{print $2}' | sed -e 's/:/\\n/' | grep 192",
-            shell=True))[2:-3]
+    host = subprocess.check_output("echo $IP", shell=True).decode('utf-8')[:-1]
 
     #host = '192.168.12.1'
     #print os.environ.keys()
