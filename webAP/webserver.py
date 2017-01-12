@@ -61,7 +61,7 @@ class myHandler(BaseHTTPRequestHandler):
     def reboot(self):
         from time import sleep
         sleep(5)
-        os.system('mv interfaces-wlan0 /etc/network/interfaces.d/wlan0')
+        os.system('sudo mv interfaces-wlan0 /etc/network/interfaces.d/wlan0')
         os.system('reboot now')
 
 try:
