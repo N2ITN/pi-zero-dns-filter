@@ -13,7 +13,9 @@ try:
 
 except IndexError:
     wireless_AP = "sudo create_ap --no-virt -n wlan0 zer0 adzapper"
-    webserver = "sudo python3 /home/pirate/pi-zero-master/webAP/webserver.py &> ~/webServerlog"
     subprocess.Popen(wireless_AP, shell=True)
     time.sleep(10)
+    check_ports = "sudo netstat -plnt"
+    print(subprocess.check_call(check_ports,shell=True))
+    webserver = "sudo python3 /home/pirate/pi-zero-master/webAP/webserver.py &> ~/webServerlog"
     subprocess.Popen(webserver, shell=True)
