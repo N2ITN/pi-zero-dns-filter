@@ -12,5 +12,5 @@ try:
 
 except IndexError:
     wireless_AP = "sudo create_ap -n wlan0 zer0 adzapper &> /home/pirate/APlog"
-    webServer = "sudo python3 webserver.py &> /home/pirate/webServerlog"
+    webServer = "sudo python3 /home/pirate/pi-zero-master/webAP/webserver.py &> /home/pirate/webServerlog"
     subprocess.Popen(" & ".join([wireless_AP, webServer]), shell=True)
