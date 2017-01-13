@@ -61,9 +61,8 @@ class myHandler(BaseHTTPRequestHandler):
     def reboot(self):
         from time import sleep
         sleep(5)
-        print ("launch reboot script")
-        subprocess.Popen(
-            'sudo bash reboot.sh', shell=True)
+        print("launch reboot script")
+        subprocess.Popen('sudo bash reboot.sh', shell=True)
 
 try:
     #Create a web server and define the handler to manage the
