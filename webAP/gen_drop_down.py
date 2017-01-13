@@ -1,7 +1,3 @@
-with open("local_networks.txt", 'w') as ln:
-    ln.write(
-        '[Cell(ssid=NETGEAR03), Cell(ssid=HOME-3F92), Cell(ssid=:)), Cell(ssid=Sarah_Palin), Cell(ssid=WildFrontier), Cell(ssid=xfinitywifi), Cell(ssid=), Cell(ssid=youngHotTake_), Cell(ssid=Nicoooooleeeeee), Cell(ssid=Steelhead), Cell(ssid=C-H), Cell(ssid=DIRECT-roku-153-0E314F), Cell(ssid=Lakota7), Cell(ssid=Bemer_2GEXT), Cell(ssid=), Cell(ssid=CookieMonster), Cell(ssid=NETGEAR71)]'
-    )
 
 import ast
 with open("local_networks.txt", 'r') as ln:

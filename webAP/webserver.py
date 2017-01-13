@@ -44,11 +44,10 @@ class myHandler(BaseHTTPRequestHandler):
             print(self.network)
             self.passkey = form["password"].value
             self.reconnect()
-<<<<<<< HEAD
             #self.reboot()
-=======
+
             # self.reboot()
->>>>>>> 1cf2bd40231e086056895d386a3d2adc49538e41
+
             return
 
     # Set wifi defaults

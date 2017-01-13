@@ -3,3 +3,5 @@ credentials.txt
 nohup.out
 *.save
 *.vscode
+*.pyc
+*local_networks.txt
