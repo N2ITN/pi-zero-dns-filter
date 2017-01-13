@@ -11,7 +11,7 @@ try:
     from wifi import Cell, Scheme
     myfi = Cell.all('wlan0')
     cell = [w for w in myfi if w.ssid]
-    with 'open(local_networks.txt', 'w' as ln:
+    with open('local_networks.txt', 'w' as ln:
         ln.write([w for w in myfi if w.ssid])
 except Exception as ee:
     print('scanning failed:', ee)
