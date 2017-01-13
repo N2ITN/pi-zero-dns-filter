@@ -12,7 +12,7 @@ try:
     subprocess.Popen("bash ~/pi-zero-master/pihole_persist.sh", shell=True)
 
 except IndexError:
-    wireless_AP = "sudo create_ap --no-virt -n wlan0 zer0 adzapper"
+    wireless_AP = "sudo create_ap --no-virt -n wlan0 zer0 adzapper && sudo service avahi-daemon restart"
     subprocess.Popen(wireless_AP, shell=True)
     time.sleep(10)
     check_ports = "sudo netstat -plnt"
