@@ -11,13 +11,15 @@ print("**********")
 
 print((pendulum.now('US/Pacific-New').ctime()))
 
+import gen_drop_down
+
 
 #This class will handles incoming requests from the browser 
 class myHandler(BaseHTTPRequestHandler):
 
     # Load main page from *.local
     def do_GET(self):
-        self.path = "app.html"
+        self.path = "app_new.html"
         p = os.getcwd() + sep + self.path
         f = open(p, 'rb')
         self.send_response(200)
@@ -37,12 +39,14 @@ class myHandler(BaseHTTPRequestHandler):
                 })
             self.send_response(200)
             self.end_headers()
+
             self.network = form["network"].value
+            print(self.network)
             self.passkey = form["password"].value
             self.reconnect()
-            self.reboot()
+            # self.reboot()
             return
-            
+
     # Set wifi defaults
     def reconnect(self):
         call = ' '.join(["(wpa_passphrase", self.network, self.passkey, ')'])
@@ -64,6 +68,7 @@ class myHandler(BaseHTTPRequestHandler):
         sleep(5)
         print("launch reboot script")
         subprocess.Popen('sudo bash reboot.sh', shell=True)
+
 
 try:
     #Create a web server and define the handler to manage the
