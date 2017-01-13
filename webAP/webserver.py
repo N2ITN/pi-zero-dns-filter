@@ -40,7 +40,7 @@ class myHandler(BaseHTTPRequestHandler):
             self.network = form["network"].value
             self.passkey = form["password"].value
             self.reconnect()
-            self.reboot()
+            #self.reboot()
             return
             
     # Set wifi defaults

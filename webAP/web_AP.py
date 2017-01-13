@@ -25,7 +25,7 @@ except IndexError as e:
         myfi = Cell.all('wlan0')
         cell = [w for w in myfi]
         with open('local_networks.txt', 'w') as ln:
-            ln.write(cell)
+            ln.write(str(cell))
     except Exception as ee:
         print('scanning failed:', ee)
         print(e)
@@ -38,6 +38,6 @@ except IndexError as e:
     # Hash entered credentials to psk
     # Save results as default wifi network, reboot
 
-    webserver = "sudo python3 /home/pirate/pi-zero-master/webAP/webserver.py &> ~/webServerlog"
+    webserver = "sudo python3 /home/pirate/pi-zero-master/webAP/webserver.py &> /home/pirate/webServerlog"
     subprocess.Popen(webserver, shell=True)
     # On boot, should pass the SSID test, start pi-hole docker
