@@ -15,6 +15,7 @@ print((pendulum.now('US/Pacific-New').ctime()))
 #This class will handles incoming requests from the browser 
 class myHandler(BaseHTTPRequestHandler):
 
+    # Load main page from *.local
     def do_GET(self):
         self.path = "app.html"
         p = os.getcwd() + sep + self.path
@@ -24,8 +25,7 @@ class myHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(f.read())
 
-#Handler for the POST requests
-
+    # Handle ssid / password POST from browser
     def do_POST(self):
         if self.path == "/send":
             form = cgi.FieldStorage(
@@ -35,7 +35,6 @@ class myHandler(BaseHTTPRequestHandler):
                     'REQUEST_METHOD': 'POST',
                     'CONTENT_TYPE': self.headers['Content-Type'],
                 })
-
             self.send_response(200)
             self.end_headers()
             self.network = form["network"].value
@@ -43,7 +42,8 @@ class myHandler(BaseHTTPRequestHandler):
             self.reconnect()
             self.reboot()
             return
-
+            
+    # Set wifi defaults
     def reconnect(self):
         call = ' '.join(["(wpa_passphrase", self.network, self.passkey, ')'])
         wpa = str(subprocess.check_output(call, shell=True))
@@ -51,7 +51,7 @@ class myHandler(BaseHTTPRequestHandler):
         psk = wpa.split('=')[-1].split("\\")[0]
         with open('interfaces-wlan0', 'w') as wifiCreds:
             wifiCreds.write('\n'.join([
-                'allow-hotplug wlan0','auto wlan0', 'iface wlan0 inet dhcp',
+                'allow-hotplug wlan0', 'auto wlan0', 'iface wlan0 inet dhcp',
                 'wpa-ssid ' + self.network, 'wpa-psk ' + psk
             ]))
         self.wfile.write(b"Connecting to: " + bytes(self.network, ' utf-8') +
@@ -70,9 +70,6 @@ try:
     #incoming request
     host = subprocess.check_output("echo $IP", shell=True).decode('utf-8')[:-1]
 
-    #host = '192.168.12.1'
-    #print os.environ.keys()
-    #host = os.environ['WLAN_ADDR']
     server = HTTPServer((host, PORT_NUMBER), myHandler)
     print(('Started httpserver on port ', host, PORT_NUMBER))
     #Wait forever for incoming http requests

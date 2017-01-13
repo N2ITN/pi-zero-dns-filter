@@ -11,36 +11,33 @@ sudo aptitude update
 sudo aptitude upgrade -y
 
 ''' sudo  dpkg-reconfigure tzdata  ## america/los angeles'''
+# Install access point dependencies
+sudo aptitude install ntp util-linux procps hostapd iproute2 iw haveged make dnsmasq iptables -y
+# Python dependencies
+sudo aptitude install python3 python3-pip -y
+sudo pip3 install wifi
+sudo pip3 install pendulum
+
 # Install access point
-sudo apt-get install util-linux procps hostapd iproute2 iw haveged make dnsmasq iptables -y
 cd ~/create_ap
 sudo make install
 
-cd ~/zer0
+cd ~
 
-# pip wifi module
-sudo aptitude install python3 -y
-sudo aptitude install python3-pip -y
-sudo pip3 install wifi
-sudo pip3 install pendulum
-# Add startup script command
-> rc.local
-echo "cd ~/pi-zero-master/webAP" >> rc.local
-echo "git pull" >> rc.local
-echo "sudo python3 web_AP.py >> rc.local
-echo "exit 0" >> rc.local
-sed -i "1i #!/bin/bash"  rc.local
-chmod 755 rc.local
-sudo mv rc.local /etc/rc.local
+# Add directory structure for pihole persistence
+cd /home/pirate/
+sudo mkdir mnt
+sudo mkdir mnt/etc/
+sudo mkdir mnt/log/
+sudo mkdir mnt/html
+sudo chmod 755 mnt/html
+sudo touch mnt/log/pihole.log
+sudo chmod 755  mnt/log/pihole.log
 
+# Add auto config service
+sudo mv pi-zero-master/etc/init.d/piholeAP /etc/init.d/piholeAP
+sudo update-rc.d piholeAP defaults
 
-# cd ~ && git clone https://github.com/pathes/fakedns.git
-
-
-# # Serve portainer container viewer from localhost if SSH session is started
-# echo "docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock --name furiosa portainer/portainer:arm > error_catcher.s 2> /dev/null" >> ~/.profile 
-# echo "docker start furiosa" >> ~/.profile
-# echo "cd zer0" >> ~/.profile
 
 
 # In case of git
