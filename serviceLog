@@ -1,0 +1,51 @@
+“Starting piholeAP service”
+date
+piholeAP.sh: line 4: ifconfig: command not found
+b'Active Internet connections (only servers)\nProto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name\ntcp        0      0 0.0.0.0:53              0.0.0.0:*               LISTEN      445/dnsmasq     \ntcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      346/sshd        \ntcp6       0      0 :::53                   :::*                    LISTEN      445/dnsmasq     \ntcp6       0      0 :::22                   :::*                    LISTEN      346/sshd        \n'
+Connected to youngHotTake
+pihole
+pihole
+
+16acbde73c032813d3550552bfb5d2426531957225f3fa0686cbe831a915ea1b
+--2017-01-12 21:13:58--  https://raw.githubusercontent.com/diginc/docker-pi-hole/master/docker-pi-hole.cron
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.192.133, 151.101.128.133, 151.101.64.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.192.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1483 (1.4K) [text/plain]
+Saving to: ‘STDOUT’
+# Pi-hole: A black hole for Internet advertisements
+# (c) 2015, 2016 by Jacob Salmela
+# Network-wide ad blocking via your Raspberry Pi
+# http://pi-hole.net
+# Updates ad sources every week
+#
+# Pi-hole is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 2 of the License, or
+# (at your option) any later version.
+# 
+# This file is under source-control of the Pi-hole installation and update
+# scripts, any changes made to this file will be overwritten when the softare
+# is updated or re-installed. Please make any changes to the appropriate crontab
+# or other cron file snippets.
+
+# Your container name goes here:
+DOCKER_NAME=pihole
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# Pi-hole: Update the ad sources once a week on Sunday at 01:59
+#          Download any updates from the adlists
+59 1    * * 7   root    docker exec $DOCKER_NAME pihole updateGravity > /dev/null
+
+# Update docker-pi-hole by pulling the latest docker image ane re-creating your container.
+# pihole software update commands are unsupported in docker!
+#30 2    * * 7   root    docker exec $DOCKER_NAME pihole updatePihole > /dev/null
+
+# Pi-hole: Flush the log daily at 00:00 so it doesn't get out of control
+#          Stats will be viewable in the Web interface thanks to the cron job above
+00 00   * * *   root    docker exec $DOCKER_NAME pihole flush > /dev/null
+
+     0K .                                                     100% 3.91M=0s
+
+2017-01-12 21:13:59 (3.91 MB/s) - written to stdout [1483/1483]
+

@@ -1,0 +1,39 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          piholeAP
+# Required-Start:    $all
+# Required-Stop:     $local_fs $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# X-Interactive:     false
+# Short-Description: piholeAP
+# Description:       Start AP for credentials --> reboot if no connection. If connection start pihole container
+### END INIT INFO
+
+DESC="Pihole AP"
+NAME=piholeAP
+#DAEMON=
+SCRIPT="cd /home/pirate/pi-zero-master && bash piholeAP.sh;"
+
+do_start()
+{
+   echo date;
+   su -c "$SCRIPT" "pirate"
+}
+
+do_stop()
+{
+   echo "stopping!"
+}
+
+
+case "$1" in
+   start)
+     do_start
+     ;;
+   stop)
+     do_stop
+     ;;
+esac
+
+exit 0
