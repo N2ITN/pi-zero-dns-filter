@@ -61,7 +61,7 @@ class myHandler(BaseHTTPRequestHandler):
     def reboot(self):
         from time import sleep
         sleep(5)
-        print "launch reboot script"
+        print ("launch reboot script")
         subprocess.Popen(
             'sudo bash reboot.sh', shell=True)
 
