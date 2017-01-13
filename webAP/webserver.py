@@ -42,6 +42,7 @@ class myHandler(BaseHTTPRequestHandler):
             self.passkey = form["password"].value
             self.reconnect()
             self.reboot()
+            return
 
     def reconnect(self):
         call = ' '.join(["(wpa_passphrase", self.network, self.passkey, ')'])
@@ -50,7 +51,7 @@ class myHandler(BaseHTTPRequestHandler):
         psk = wpa.split('=')[-1].split("\\")[0]
         with open('interfaces-wlan0', 'w') as wifiCreds:
             wifiCreds.write('\n'.join([
-                'allow-hotplug wlan0', 'auto wlan0', 'iface wlan0 inet dhcp',
+                'allow-hotplug wlan0', 'iface wlan0 inet dhcp',
                 'wpa-ssid ' + self.network, 'wpa-psk ' + psk
             ]))
         self.wfile.write(b"Connecting to: " + bytes(self.network, ' utf-8') +

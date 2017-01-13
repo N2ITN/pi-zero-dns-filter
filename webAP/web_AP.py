@@ -5,7 +5,7 @@ import time
 ssid_get = "iwconfig wlan0 | grep ESSID | awk -F: '{print $2}'"
 ssid_bash = str(subprocess.check_output(ssid_get, shell=True))
 check_ports = "sudo netstat -plnt"
-print(subprocess.check_call(check_ports, shell=True))
+print(subprocess.check_output(check_ports, shell=True))
 
 try:
     ssid = ssid_bash.split('"')[1]
