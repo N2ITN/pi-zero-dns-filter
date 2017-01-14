@@ -34,7 +34,7 @@ sudo chmod 755 mnt/html
 sudo touch mnt/log/pihole.log
 sudo chmod 755  mnt/log/pihole.log
 
-sudo cp -r /home/pirate/pi-zero-master/milligram/ /home/pirate/mnt/html/milligram
+sudo cp -r /home/pirate/pi-zero-master/webAP/milligram/ /home/pirate/mnt/html/milligram
 # Add auto config service
 sudo mv pi-zero-master/etc/init.d/piholeAP /etc/init.d/piholeAP
 sudo update-rc.d piholeAP defaults
