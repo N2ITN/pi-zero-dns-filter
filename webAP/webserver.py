@@ -8,13 +8,14 @@ import subprocess
 PORT_NUMBER = 80
 
 print("**********")
-import gen_drop_down
+
 print((pendulum.now('US/Pacific-New').ctime()))
 
 
 #This class will handles incoming requests from the browser 
 class myHandler(BaseHTTPRequestHandler):
-
+    os.setuid(1000)
+    import gen_drop_down
     # Load main page from *.local
     def do_GET(self):
         self.path = "app_new.html"
@@ -74,6 +75,8 @@ class myHandler(BaseHTTPRequestHandler):
 try:
     #Create a web server and define the handler to manage the
     #incoming request
+    import os
+    
     host = subprocess.check_output("echo $IP", shell=True).decode('utf-8')[:-1]
 
     server = HTTPServer((host, PORT_NUMBER), myHandler)
