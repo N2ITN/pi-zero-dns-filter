@@ -1,5 +1,5 @@
-
-import ast
+import 
+os.setuid('pirate')
 with open("local_networks.txt", 'r') as ln:
     localNetworks = (ln.readlines()[0]).split(',')[1:-1]
     localNetworks = [
