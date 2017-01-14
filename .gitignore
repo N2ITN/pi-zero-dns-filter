@@ -6,4 +6,4 @@ nohup.out
 *.pyc
 */local_networks.txt
 */app_new.html
-*home.html
+home.html

@@ -2,7 +2,9 @@ import subprocess
 
 with open('home.html', 'w') as page:
     ip = subprocess.check_output("echo $IP", shell=True).decode('utf-8')
-    router = subprocess.check_output("echo $ROUTER", shell=True).decode('utf-8')
+    router = 'http://' + subprocess.check_output("echo $ROUTER", shell=True).decode('utf-8')
+    routerlink = ''.join(['<a class="button button-outline" href=', router,'> Your Router </a>'])
+    dnslabel = ''.join(['<label>Set your DNS to: </label>', '<t>', ip, '</t>'])
     page.write('''
 <!-- Google Fonts -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
@@ -17,9 +19,9 @@ with open('home.html', 'w') as page:
     page.write("\n".join([
         '<html>', 
             '<body>',
-                '<a class="button button-outline" href=', 'http://'+ router,'> Your Router </a>', 
+                routerlink,
                 '<br>',  '<br>',
-                '<label>Set your DNS to: </label>', '<t>', ip, '</t>',
+                dnslabel,
                 '<br>', '<br>',
                 '<a class="button" href="/admin"> Pi-Hole Dashboard  </a>', 
             '</body>',
