@@ -4,5 +4,5 @@ nohup.out
 *.save
 *.vscode
 *.pyc
-*local_networks.txt
-*.app_new.html
+*/local_networks.txt
+*/app_new.html
