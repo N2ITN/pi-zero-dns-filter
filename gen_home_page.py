@@ -6,9 +6,9 @@ with open('home.html', 'w') as page:
     routerlink = ''.join(['<a class="button button-outline" href=', router,'> Your Router </a>'])
     dnslabel = ' '.join(['<label>Set your DNS to: </label>', '<t>', ip, '</t>'])
     page.write('''
-<!-- Google Fonts -->
+
 <!-- Milligram CSS minified -->
-<link rel="stylesheet" href="milligram/dist/milligram.min.css">
+<link rel="stylesheet" href="milligram/dist/milligram.css">
 
 <!-- You should properly set the path from the main file. -->
 
