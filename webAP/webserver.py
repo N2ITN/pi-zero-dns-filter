@@ -12,20 +12,26 @@ print("**********")
 print((pendulum.now('US/Pacific-New').ctime()))
 import gen_drop_down
 os.seteuid(1000)
-gen_drop_down.main()      
+gen_drop_down.main()
 os.seteuid(os.getuid())
+
+
 #This class will handles incoming requests from the browser 
 class myHandler(BaseHTTPRequestHandler):
 
     # Load main page from *.local
     def do_GET(self):
-        self.path = "app_new.html"
+        if self.path.endswith('/'):
+            self.path = "app_new.html"
+            self.send_header("Content-type", "text/html")
+        if self.path.endswith(".css"):
+            self.send_header("Content-type", 'text/css')
+
         p = os.getcwd() + sep + self.path
         f = open(p, 'rb')
-        self.send_response(200)
-        self.send_header("Content-type", "text/html")
         self.end_headers()
         self.wfile.write(f.read())
+        self.send_response(200)
 
     # Handle ssid / password POST from browser
     def do_POST(self):
@@ -77,7 +83,7 @@ try:
     #Create a web server and define the handler to manage the
     #incoming request
     import os
-    
+
     host = subprocess.check_output("echo $IP", shell=True).decode('utf-8')[:-1]
 
     server = HTTPServer((host, PORT_NUMBER), myHandler)
