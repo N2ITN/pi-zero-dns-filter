@@ -1,6 +1,6 @@
 def main():
     with open("local_networks.txt", 'r') as ln:
-        localNetworks = (ln.readlines()[0]).split(',')
+        localNetworks = (ln.readlines()[0]).replace('[',"").split(',')
         localNetworks = [
             n for n in (i.strip()[10:-1] for i in localNetworks) if len(n) > 0
         ]
