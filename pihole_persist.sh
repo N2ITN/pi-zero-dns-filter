@@ -2,8 +2,8 @@ docker stop pihole
 docker rm pihole
 IMAGE='diginc/pi-hole:arm'
 NIC='wlan0'
-IP=$(ip addr show $NIC | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
-ROUTER=$(netstat -nr | awk '$1 == "0.0.0.0"{print$2}')
+export IP=$(ip addr show $NIC | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
+export ROUTER=$(netstat -nr | awk '$1 == "0.0.0.0"{print$2}')
 python3 gen_home_page.py
 echo $IP
 sudo service dnsmasq stop
