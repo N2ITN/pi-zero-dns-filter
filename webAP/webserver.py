@@ -11,7 +11,7 @@ print("**********")
 
 print((pendulum.now('US/Pacific-New').ctime()))
 import gen_drop_down
-os.seteuid(501)
+os.seteuid(1000)
 gen_drop_down.main()
 os.seteuid(os.getuid())
 
