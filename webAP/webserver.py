@@ -14,8 +14,7 @@ print((pendulum.now('US/Pacific-New').ctime()))
 
 #This class will handles incoming requests from the browser 
 class myHandler(BaseHTTPRequestHandler):
-    os.setuid(1000)
-    import gen_drop_down
+
     # Load main page from *.local
     def do_GET(self):
         self.path = "app_new.html"
