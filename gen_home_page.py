@@ -13,10 +13,11 @@ with open('home.html', 'w') as page:
 <link rel="stylesheet" href="milligram/dist/milligram.min.css">
 
 <!-- You should properly set the path from the main file. -->''')
+
     page.write("\n".join([
-        '<html>', '<body>', '<label>Your router: </label>', '<t>', '<a href="',
-        'http://', router, '">', router, '</a>', '<br>', '</t>', '<br>',
+        '<html>', '<body>', '<a class="button" href=', 'http://', router,
+        '> Your Router </a>', '<br>', '</t>', '<br>',
         '<label>Set your DNS to: </label>', '<t>', ip, '</t>', '<br>', '<br>',
-        '<a href="', "/admin", '">', 'Pi-Hole dashboard ', '</a>', '</body>',
+        '<a class="button" href="/admin"> Pi-Hole Dashboard  </a>', '</body>',
         '</html>'
     ]))
