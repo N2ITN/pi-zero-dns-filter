@@ -32,7 +32,7 @@ except IndexError as e:
         print(e)
     # If not connected to a network, start broadcasting hotspot
     print("creating hot spot")
-    wireless_AP = "sudo create_ap --no-virt -n wlan0 zer0 adzapper && sudo service avahi-daemon restart"
+    wireless_AP = "sudo ifdown wlan0; sudo create_ap --no-virt -n wlan0 zer0 adzapper && sudo service avahi-daemon restart"
     subprocess.Popen(wireless_AP, shell=True)
     time.sleep(10)
     # Make webpage, to chose from list of local SSIDs and enter password
