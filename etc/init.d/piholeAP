@@ -13,7 +13,7 @@
 DESC="Pihole AP"
 NAME=piholeAP
 #DAEMON=
-SCRIPT="cd /home/pirate/pi-zero-master && bash piholeAP.sh;"
+SCRIPT="cd /home/pirate/pi-zero-master && bash piholeAP.sh &> service.log;"
 
 do_start()
 {
