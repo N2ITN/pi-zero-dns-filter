@@ -9,6 +9,7 @@ check_ports = "sudo netstat -plnt"
 print(subprocess.check_output(check_ports, shell=True))
 
 try:
+    subprocess.Popen("sudo ifconfig ifdown wlan0",shell=True)
     # See if the pi is connected to a wifi network
     ssid = ssid_bash.split('"')[1]
     print('Connected to', ssid)
