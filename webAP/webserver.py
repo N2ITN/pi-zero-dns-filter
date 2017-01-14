@@ -10,8 +10,9 @@ PORT_NUMBER = 80
 print("**********")
 
 print((pendulum.now('US/Pacific-New').ctime()))
+os.seteuid(1000)      
 import gen_drop_down
-
+os.seteuid(os.getuid())
 #This class will handles incoming requests from the browser 
 class myHandler(BaseHTTPRequestHandler):
 
