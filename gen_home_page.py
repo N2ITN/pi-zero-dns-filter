@@ -1,11 +1,11 @@
 import subprocess
 
 with open('home.html', 'w') as page:
-    ip = str(subprocess.check_output("echo $IP", shell=True))
-    router = str(subprocess.check_output("echo $ROUTER", shell=True))
+    ip = subprocess.check_output("echo $IP", shell=True).decode('utf-8')
+    router = subprocess.check_output("echo $ROUTER", shell=True).decode('utf-8')
 
     page.write("\n".join([
         '<html>', '<body>', '<label>Your network: </label>', '<t>', ip, '</t>',
-        '<br>', '<label>Your route r: </label>', '<t>', router, '</t>',
+        '<br>', '<label>Your router: </label>', '<t>', router, '</t>',
         '</body>', '</html>'
     ]))
