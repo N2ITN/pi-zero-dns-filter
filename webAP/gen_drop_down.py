@@ -1,5 +1,4 @@
-import os
-os.setuid(1000)
+
 with open("local_networks.txt", 'r') as ln:
     localNetworks = (ln.readlines()[0]).split(',')[1:-1]
     localNetworks = [
@@ -20,4 +19,3 @@ with open("app.html", 'r') as original:
                     new.write(x)
                     new.write('\n')
                     
-os.setuid(0)
