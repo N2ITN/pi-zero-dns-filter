@@ -12,6 +12,7 @@ try:
     # See if the pi is connected to a wifi network
     ssid = ssid_bash.split('"')[1]
     print('Connected to', ssid)
+    time.sleep(10)
     # Start pi-hole docker container with persistent log storage
     subprocess.Popen(
         "bash /home/pirate/pi-zero-master/pihole_persist.sh", shell=True)
