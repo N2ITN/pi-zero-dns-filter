@@ -20,4 +20,4 @@ with open("app.html", 'r') as original:
                     new.write(x)
                     new.write('\n')
                     
-os.seteuid(0)
+os.seteuid(os.getuid())
