@@ -5,3 +5,4 @@ nohup.out
 *.vscode
 *.pyc
 *local_networks.txt
+*.app_new.html
