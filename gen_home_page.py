@@ -7,6 +7,6 @@ with open('home.html', 'w') as page:
     page.write("\n".join([
         '<html>', '<body>', '<label>Your network: </label>', '<t>', '<a href="',
         ip, '">', ip, '</a>', '</t>', '<br>', '<label>Your router: </label>',
-        '<t>', '<a href="', router, '">', router, '</a>', '</t>', '</body>',
-        '</html>'
+        '<t>', '<a href="', router, '">', router, '</a>', '</t>', '<br>',
+        '<a href="', "/admin", '">', router, '</a>', '</body>', '</html>'
     ]))
