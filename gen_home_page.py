@@ -7,8 +7,8 @@ with open('home.html', 'w') as page:
         "echo $ROUTER", shell=True).decode('utf-8')
 
     page.write("\n".join([
-        '<html>', '<body>', '<label>Your network: </label>', '<br>', '<t>',
-        '<a href="', ip, '">', ip, '</a>', '</t>', '<br>',
+        '<html>', '<body>', '<label>Your network: </label>',  '<t>',
+        '<a href="', ip, '">', ip, '</a>', '<br>','</t>', '<br>',
         '<label>Set your DNS to: </label>', '<t>', router, '</t>', '<br>',
         '<br>', '<a href="', "/admin", '">', 'Pi-Hole dashboard ', '</a>',
         '</body>', '</html>'
