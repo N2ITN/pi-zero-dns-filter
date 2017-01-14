@@ -1,7 +1,7 @@
 
 import subprocess
 
-with open('home.html', 'w'):
+with open('home.html', 'w') as page:
     head = """<html>
     <body>"""
 
@@ -9,7 +9,7 @@ with open('home.html', 'w'):
 
     end = """</body>
     </html>"""
-    w.write(head)
-    w.write(middle)
-    w.write(end)
-    
+    page.write(head)
+    page.write(middle)
+    page.write(end)
+
