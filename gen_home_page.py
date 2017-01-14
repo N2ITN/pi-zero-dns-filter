@@ -11,11 +11,11 @@ with open('home.html', 'w') as page:
 <link rel="stylesheet" href="milligram/dist/milligram.min.css">
 
 <!-- You should properly set the path from the main file. -->
-<pre><code>
+
 .milligram {
   color: #ce5521;
 }
-</code></pre>''')
+''')
 
     page.write("\n".join([
         '<html>', 
