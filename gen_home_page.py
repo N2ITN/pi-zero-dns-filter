@@ -1,7 +1,7 @@
 import subprocess
 
 with open('home.html', 'w') as page:
-    ip = 'http://' + subprocess.check_output(
+    ip =  subprocess.check_output(
         "echo $IP", shell=True).decode('utf-8')
     router =  subprocess.check_output(
         "echo $ROUTER", shell=True).decode('utf-8')
