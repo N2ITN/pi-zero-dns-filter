@@ -19,3 +19,6 @@ def main():
                         new.write(x)
                         new.write('\n')
 
+
+if __name__ == '__main__':
+    main()

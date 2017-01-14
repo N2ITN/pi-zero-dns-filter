@@ -38,7 +38,8 @@ except IndexError as e:
     # Make webpage, to chose from list of local SSIDs and enter password
     # Hash entered credentials to psk
     # Save results as default wifi network, reboot
-
+    subprocess.Popen("python3 gen_drop_down.py", shell=True)
+    
     webserver = "sudo python3 /home/pirate/pi-zero-master/webAP/webserver.py &> /home/pirate/webServerlog"
     subprocess.Popen(webserver, shell=True)
     # On boot, should pass the SSID test, start pi-hole docker
