@@ -11,7 +11,7 @@ print("**********")
 
 print((pendulum.now('US/Pacific-New').ctime()))
 import gen_drop_down
-os.seteuid(1000)
+os.seteuid(501)
 gen_drop_down.main()
 os.seteuid(os.getuid())
 
@@ -23,15 +23,16 @@ class myHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path.endswith('/'):
             self.path = "app_new.html"
-            self.send_header("Content-type", "text/html")
-        if self.path.endswith(".css"):
-            self.send_header("Content-type", 'text/css')
-
+            value =  "text/html"
+        elif self.path.endswith(".css"):
+            value  =  'text/css'
         p = os.getcwd() + sep + self.path
         f = open(p, 'rb')
+        self.send_response(200)
+        self.send_header("Content-type",value)
         self.end_headers()
         self.wfile.write(f.read())
-        self.send_response(200)
+        f.close()
 
     # Handle ssid / password POST from browser
     def do_POST(self):
