@@ -5,7 +5,8 @@ with open('home.html', 'w') as page:
     router = subprocess.check_output("echo $ROUTER", shell=True).decode('utf-8')
 
     page.write("\n".join([
-        '<html>', '<body>', '<label>Your network: </label>', '<t>', ip, '</t>',
-        '<br>', '<label>Your router: </label>', '<t>', router, '</t>',
-        '</body>', '</html>'
+        '<html>', '<body>', '<label>Your network: </label>', '<t>', '<a href="',
+        ip, '">', ip, '</a>', '</t>', '<br>', '<label>Your router: </label>',
+        '<t>', '<a href="', router, '">', router, '</a>', '</t>', '</body>',
+        '</html>'
     ]))
