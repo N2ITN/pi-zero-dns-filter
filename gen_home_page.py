@@ -15,9 +15,13 @@ with open('home.html', 'w') as page:
 <!-- You should properly set the path from the main file. -->''')
 
     page.write("\n".join([
-        '<html>', '<body>', '<a class="button" href=', 'http://', router,
-        '> Your Router </a>', '<br>', '</t>', '<br>',
-        '<label>Set your DNS to: </label>', '<t>', ip, '</t>', '<br>', '<br>',
-        '<a class="button" href="/admin"> Pi-Hole Dashboard  </a>', '</body>',
+        '<html>', 
+            '<body>',
+                '<a class="button button-outline" href=', 'http://'+ router,'> Your Router </a>', 
+                '<br>',  '<br>',
+                '<label>Set your DNS to: </label>', '<t>', ip, '</t>',
+                '<br>', '<br>',
+                '<a class="button" href="/admin"> Pi-Hole Dashboard  </a>', 
+            '</body>',
         '</html>'
     ]))
