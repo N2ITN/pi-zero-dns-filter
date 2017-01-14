@@ -46,7 +46,7 @@ class myHandler(BaseHTTPRequestHandler):
             self.reconnect()
             #self.reboot()
 
-            # self.reboot()
+            self.reboot()
 
             return
 
