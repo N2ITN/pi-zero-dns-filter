@@ -7,14 +7,15 @@ with open('home.html', 'w') as page:
     dnslabel = ''.join(['<label>Set your DNS to: </label>', '<t>', ip, '</t>'])
     page.write('''
 <!-- Google Fonts -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-
-
-
 <!-- Milligram CSS minified -->
 <link rel="stylesheet" href="milligram/dist/milligram.min.css">
 
-<!-- You should properly set the path from the main file. -->''')
+<!-- You should properly set the path from the main file. -->
+<pre><code>
+.milligram {
+  color: #ce5521;
+}
+</code></pre>''')
 
     page.write("\n".join([
         '<html>', 
