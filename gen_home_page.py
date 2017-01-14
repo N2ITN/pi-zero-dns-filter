@@ -4,7 +4,7 @@ with open('home.html', 'w') as page:
     ip = subprocess.check_output("echo $IP", shell=True).decode('utf-8')
     router = 'http://' + subprocess.check_output("echo $ROUTER", shell=True).decode('utf-8')
     routerlink = ''.join(['<a class="button button-outline" href=', router,'> Your Router </a>'])
-    dnslabel = ''.join(['<label>Set your DNS to: </label>', '<t>', ip, '</t>'])
+    dnslabel = ' '.join(['<label>Set your DNS to: </label>', '<t>', ip, '</t>'])
     page.write('''
 <!-- Google Fonts -->
 <!-- Milligram CSS minified -->
@@ -12,9 +12,7 @@ with open('home.html', 'w') as page:
 
 <!-- You should properly set the path from the main file. -->
 
-.milligram {
-  color: #ce5521;
-}
+
 ''')
 
     page.write("\n".join([
