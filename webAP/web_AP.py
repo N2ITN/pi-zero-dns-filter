@@ -40,6 +40,6 @@ except IndexError as e:
     # Save results as default wifi network, reboot
     subprocess.Popen("cd /home/pirate/pi-zero-master/webAP && python3 gen_drop_down.py", shell=True)
     
-    webserver = "cd /home/pirate/pi-zero-master/webAP && sudo python3 webserver.py &> /home/pirate/webServerlog"
+    webserver = "cd /home/pirate/pi-zero-master/webAP && (sudo python3 webserver.py &> /home/pirate/webServerlog)"
     subprocess.Popen(webserver, shell=True)
     # On boot, should pass the SSID test, start pi-hole docker
