@@ -4,7 +4,7 @@ IMAGE='diginc/pi-hole:arm'
 NIC='wlan0'
 export IP=$(ip addr show $NIC | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
 export ROUTER=$(netstat -nr | awk '$1 == "0.0.0.0"{print$2}')
-cd /home/pirate/pi-zero-master/webAP && python3 gen_home_page.py
+cd /home/pirate/pi-zero-master/webAP && python3 gen_home_page.py && echo 'making web page'
 sudo cp home.html /home/pirate/mnt/html/index.html
 echo $IP
 sudo service dnsmasq stop

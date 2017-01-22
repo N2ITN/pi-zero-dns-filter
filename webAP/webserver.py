@@ -23,13 +23,13 @@ class myHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path.endswith('/'):
             self.path = "app_new.html"
-            value =  "text/html"
+            value = "text/html"
         elif self.path.endswith(".css"):
-            value  =  'text/css'
+            value = 'text/css'
         p = os.getcwd() + sep + self.path
         f = open(p, 'rb')
         self.send_response(200)
-        self.send_header("Content-type",value)
+        self.send_header("Content-type", value)
         self.end_headers()
         self.wfile.write(f.read())
         f.close()
