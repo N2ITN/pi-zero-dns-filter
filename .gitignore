@@ -4,6 +4,9 @@ nohup.out
 *.save
 *.vscode
 *.pyc
-*/local_networks.txt
+*local_networks.txt
 */app_new.html
 home.html
+milligram/examples/
+milligram/src/
+milligram/test
