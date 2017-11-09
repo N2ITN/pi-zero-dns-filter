@@ -1,4 +1,4 @@
-# pi-zero-dns-filter
+# Pi Zero DNS Filter
 This is a local DNS proxy designed for filtering adware and malicious websites from a local network. It is built to run on a raspberry pi zero.
 
 ## Easy configuration
